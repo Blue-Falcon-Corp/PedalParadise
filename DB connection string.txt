@@ -1,0 +1,7 @@
+server: cisvm-msql.unfcsd.unf.edu\SPRING
+
+//connection string
+Data Source=CISVM-MSQL\SPRING;Initial 
+Catalog=BlueFal;Integrated 
+Security=True;Connect 
+Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False
