@@ -14,7 +14,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PedalParadise")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b6af3e4ebdd75593ab614142a508e66828d0e5bd")]
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+>>>>>>> 533111aacc8a217098bb2b6b4c6f3003bdf8390e
 [assembly: System.Reflection.AssemblyProductAttribute("PedalParadise")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PedalParadise")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
