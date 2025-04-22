@@ -1,10 +1,10 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\User\\Desktop\\PedalParadise\\PedalParadise2\\",
+  "WorkspaceRootPath": "C:\\Users\\danie\\Escritorio\\PedalParadise\\PedalParadise2\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{907A4301-DB8E-4295-B28F-247A9CDBD388}|PedalParadise\\PedalParadise.csproj|c:\\users\\user\\desktop\\pedalparadise\\pedalparadise2\\pedalparadise\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{907A4301-DB8E-4295-B28F-247A9CDBD388}|PedalParadise\\PedalParadise.csproj|solutionrelative:pedalparadise\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{907A4301-DB8E-4295-B28F-247A9CDBD388}|PedalParadise\\PedalParadise.csproj|c:\\users\\danie\\escritorio\\pedalparadise\\pedalparadise2\\pedalparadise\\models\\client.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{907A4301-DB8E-4295-B28F-247A9CDBD388}|PedalParadise\\PedalParadise.csproj|solutionrelative:pedalparadise\\models\\client.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,92 +19,15 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Desktop\\PedalParadise\\PedalParadise2\\PedalParadise\\Program.cs",
-              "RelativeDocumentMoniker": "PedalParadise\\Program.cs",
-              "ToolTip": "C:\\Users\\User\\Desktop\\PedalParadise\\PedalParadise2\\PedalParadise\\Program.cs",
-              "RelativeToolTip": "PedalParadise\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-<<<<<<< HEAD
-              "WhenOpened": "2025-04-22T02:16:10.947Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\danie\\Escritorio\\PedalParadise\\PedalParadise2\\PedalParadise\\appsettings.json",
-              "RelativeDocumentMoniker": "PedalParadise\\appsettings.json",
-              "ToolTip": "C:\\Users\\danie\\Escritorio\\PedalParadise\\PedalParadise2\\PedalParadise\\appsettings.json",
-              "RelativeToolTip": "PedalParadise\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-04-22T02:15:09.57Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ApplicationDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\danie\\Escritorio\\PedalParadise\\PedalParadise2\\PedalParadise\\Controllers\\Data\\ApplicationDbContext.cs",
-              "RelativeDocumentMoniker": "PedalParadise\\Controllers\\Data\\ApplicationDbContext.cs",
-              "ToolTip": "C:\\Users\\danie\\Escritorio\\PedalParadise\\PedalParadise2\\PedalParadise\\Controllers\\Data\\ApplicationDbContext.cs",
-              "RelativeToolTip": "PedalParadise\\Controllers\\Data\\ApplicationDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T02:12:46.352Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "PedalParadise.csproj",
-              "DocumentMoniker": "C:\\Users\\danie\\Escritorio\\PedalParadise\\PedalParadise2\\PedalParadise\\PedalParadise.csproj",
-              "RelativeDocumentMoniker": "PedalParadise\\PedalParadise.csproj",
-              "ToolTip": "C:\\Users\\danie\\Escritorio\\PedalParadise\\PedalParadise2\\PedalParadise\\PedalParadise.csproj",
-              "RelativeToolTip": "PedalParadise\\PedalParadise.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-04-22T02:10:04.795Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
               "Title": "Client.cs",
               "DocumentMoniker": "C:\\Users\\danie\\Escritorio\\PedalParadise\\PedalParadise2\\PedalParadise\\Models\\Client.cs",
               "RelativeDocumentMoniker": "PedalParadise\\Models\\Client.cs",
               "ToolTip": "C:\\Users\\danie\\Escritorio\\PedalParadise\\PedalParadise2\\PedalParadise\\Models\\Client.cs",
               "RelativeToolTip": "PedalParadise\\Models\\Client.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T02:07:40.534Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Employee.cs",
-              "DocumentMoniker": "C:\\Users\\danie\\Escritorio\\PedalParadise\\PedalParadise2\\PedalParadise\\Models\\Employee.cs",
-              "RelativeDocumentMoniker": "PedalParadise\\Models\\Employee.cs",
-              "ToolTip": "C:\\Users\\danie\\Escritorio\\PedalParadise\\PedalParadise2\\PedalParadise\\Models\\Employee.cs",
-              "RelativeToolTip": "PedalParadise\\Models\\Employee.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T01:56:42.828Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "User.cs",
-              "DocumentMoniker": "C:\\Users\\danie\\Escritorio\\PedalParadise\\PedalParadise2\\PedalParadise\\Models\\User.cs",
-              "RelativeDocumentMoniker": "PedalParadise\\Models\\User.cs",
-              "ToolTip": "C:\\Users\\danie\\Escritorio\\PedalParadise\\PedalParadise2\\PedalParadise\\Models\\User.cs",
-              "RelativeToolTip": "PedalParadise\\Models\\User.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T01:53:19.962Z"
-=======
-              "WhenOpened": "2025-04-22T03:09:23.193Z",
+              "WhenOpened": "2025-04-22T02:07:40.534Z",
               "EditorCaption": ""
->>>>>>> 533111aacc8a217098bb2b6b4c6f3003bdf8390e
             }
           ]
         }
