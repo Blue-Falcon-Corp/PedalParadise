@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "nk7RcgqYVurPSZeNl6dKB4BKOW5i/0jjZ2PZl9Dw43FD224N8n8PDu0Fwrwsj3qS390mCX9IATJPLCmh6U9BFA==",
+  "dgSpecHash": "Z4/0DJYCmgQ=",
   "success": true,
-  "projectFilePath": "C:\\Users\\n01611365\\Desktop\\PedalParadise\\PedalParadise\\PedalParadise.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\User\\Desktop\\PedalParadise\\PedalParadise2\\PedalParadise\\PedalParadise.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\User\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.36\\microsoft.windowsdesktop.app.ref.6.0.36.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.36\\microsoft.netcore.app.ref.6.0.36.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.36\\microsoft.aspnetcore.app.ref.6.0.36.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.36\\microsoft.netcore.app.host.win-x64.6.0.36.nupkg.sha512"
+  ],
   "logs": []
 }
