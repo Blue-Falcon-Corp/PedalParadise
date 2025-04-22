@@ -1,8 +1,42 @@
 {
   "version": 2,
-  "dgSpecHash": "nk7RcgqYVurPSZeNl6dKB4BKOW5i/0jjZ2PZl9Dw43FD224N8n8PDu0Fwrwsj3qS390mCX9IATJPLCmh6U9BFA==",
+  "dgSpecHash": "0x3+Q2kJpmXE7ro924Pd05QdJljoxgJSR303ySbXGgoTLv+8aKR7rDw2BBVOP5dv2F3U8aCWTHH0bfuuRWwuBw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\n01611365\\Desktop\\PedalParadise\\PedalParadise\\PedalParadise.csproj",
-  "expectedPackageFiles": [],
-  "logs": []
+  "projectFilePath": "C:\\Users\\n01476144\\Source\\Repos\\PedalParadise\\PedalParadise2\\PedalParadise\\PedalParadise.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\n01476144\\.nuget\\packages\\microsoft.data.sqlclient\\6.0.1\\microsoft.data.sqlclient.6.0.1.nupkg.sha512",
+    "C:\\Users\\n01476144\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.24\\microsoft.entityframeworkcore.6.0.24.nupkg.sha512",
+    "C:\\Users\\n01476144\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\6.0.24\\microsoft.entityframeworkcore.abstractions.6.0.24.nupkg.sha512",
+    "C:\\Users\\n01476144\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\6.0.24\\microsoft.entityframeworkcore.analyzers.6.0.24.nupkg.sha512",
+    "C:\\Users\\n01476144\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\6.0.24\\microsoft.entityframeworkcore.relational.6.0.24.nupkg.sha512",
+    "C:\\Users\\n01476144\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\6.0.24\\microsoft.entityframeworkcore.sqlserver.6.0.24.nupkg.sha512",
+    "C:\\Users\\n01476144\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\6.0.0\\microsoft.extensions.caching.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\n01476144\\.nuget\\packages\\microsoft.extensions.caching.memory\\6.0.1\\microsoft.extensions.caching.memory.6.0.1.nupkg.sha512",
+    "C:\\Users\\n01476144\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\6.0.0\\microsoft.extensions.configuration.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\n01476144\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\6.0.1\\microsoft.extensions.dependencyinjection.6.0.1.nupkg.sha512",
+    "C:\\Users\\n01476144\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\n01476144\\.nuget\\packages\\microsoft.extensions.logging\\6.0.0\\microsoft.extensions.logging.6.0.0.nupkg.sha512",
+    "C:\\Users\\n01476144\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\n01476144\\.nuget\\packages\\microsoft.extensions.options\\6.0.0\\microsoft.extensions.options.6.0.0.nupkg.sha512",
+    "C:\\Users\\n01476144\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "C:\\Users\\n01476144\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
+    "C:\\Users\\n01476144\\.nuget\\packages\\system.collections.immutable\\6.0.0\\system.collections.immutable.6.0.0.nupkg.sha512",
+    "C:\\Users\\n01476144\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.1\\system.diagnostics.diagnosticsource.6.0.1.nupkg.sha512",
+    "C:\\Users\\n01476144\\.nuget\\packages\\system.drawing.common\\6.0.0\\system.drawing.common.6.0.0.nupkg.sha512",
+    "C:\\Users\\n01476144\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "C:\\Users\\n01476144\\.nuget\\packages\\system.security.permissions\\6.0.1\\system.security.permissions.6.0.1.nupkg.sha512",
+    "C:\\Users\\n01476144\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.Data.SqlClient 6.0.1' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Microsoft.Data.SqlClient",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
 }
