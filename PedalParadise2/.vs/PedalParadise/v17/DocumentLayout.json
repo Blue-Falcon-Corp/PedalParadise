@@ -63,8 +63,7 @@
               "RelativeToolTip": "PedalParadise\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-04-22T02:15:09.57Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-22T02:15:09.57Z"
             },
             {
               "$type": "Document",
@@ -76,21 +75,19 @@
               "RelativeToolTip": "PedalParadise\\Controllers\\Data\\ApplicationDbContext.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T02:12:46.352Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-22T02:12:46.352Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "PedalParadise",
+              "Title": "PedalParadise.csproj",
               "DocumentMoniker": "C:\\Users\\danie\\Escritorio\\PedalParadise\\PedalParadise2\\PedalParadise\\PedalParadise.csproj",
               "RelativeDocumentMoniker": "PedalParadise\\PedalParadise.csproj",
               "ToolTip": "C:\\Users\\danie\\Escritorio\\PedalParadise\\PedalParadise2\\PedalParadise\\PedalParadise.csproj",
               "RelativeToolTip": "PedalParadise\\PedalParadise.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-04-22T02:10:04.795Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-22T02:10:04.795Z"
             },
             {
               "$type": "Document",
@@ -102,8 +99,7 @@
               "RelativeToolTip": "PedalParadise\\Models\\Client.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T02:07:40.534Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-22T02:07:40.534Z"
             },
             {
               "$type": "Document",
@@ -115,8 +111,7 @@
               "RelativeToolTip": "PedalParadise\\Models\\Employee.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T01:56:42.828Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-22T01:56:42.828Z"
             },
             {
               "$type": "Document",
@@ -128,8 +123,7 @@
               "RelativeToolTip": "PedalParadise\\Models\\User.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T01:53:19.962Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-22T01:53:19.962Z"
             }
           ]
         }
