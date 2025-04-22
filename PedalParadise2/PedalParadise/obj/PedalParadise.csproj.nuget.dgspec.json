@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\n01611365\\Desktop\\PedalParadise\\PedalParadise\\PedalParadise.csproj": {}
+    "C:\\Users\\danie\\Escritorio\\PedalParadise\\PedalParadise2\\PedalParadise\\PedalParadise.csproj": {}
   },
   "projects": {
-    "C:\\Users\\n01611365\\Desktop\\PedalParadise\\PedalParadise\\PedalParadise.csproj": {
+    "C:\\Users\\danie\\Escritorio\\PedalParadise\\PedalParadise2\\PedalParadise\\PedalParadise.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\n01611365\\Desktop\\PedalParadise\\PedalParadise\\PedalParadise.csproj",
+        "projectUniqueName": "C:\\Users\\danie\\Escritorio\\PedalParadise\\PedalParadise2\\PedalParadise\\PedalParadise.csproj",
         "projectName": "PedalParadise",
-        "projectPath": "C:\\Users\\n01611365\\Desktop\\PedalParadise\\PedalParadise\\PedalParadise.csproj",
-        "packagesPath": "C:\\Users\\n01611365\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\n01611365\\Desktop\\PedalParadise\\PedalParadise\\obj\\",
+        "projectPath": "C:\\Users\\danie\\Escritorio\\PedalParadise\\PedalParadise2\\PedalParadise\\PedalParadise.csproj",
+        "packagesPath": "C:\\Users\\danie\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\danie\\Escritorio\\PedalParadise\\PedalParadise2\\PedalParadise\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\n01611365\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\danie\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -38,18 +39,43 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -61,7 +87,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     }
