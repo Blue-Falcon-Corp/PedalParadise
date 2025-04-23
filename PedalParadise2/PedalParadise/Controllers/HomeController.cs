@@ -1,10 +1,8 @@
 ﻿// Controllers/HomeController.cs
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using PedalParadise.Models;
 using PedalParadise.Services;
 using System.Diagnostics;
-using System.Threading.Tasks;
 
 namespace PedalParadise.Controllers
 {
@@ -26,16 +24,19 @@ namespace PedalParadise.Controllers
             return View(featuredProducts);
         }
 
+        [Route("/About")]
         public IActionResult About()
         {
             return View();
         }
 
+        [Route("/Contact")]
         public IActionResult Contact()
         {
             return View();
         }
 
+        [Route("/Privacy")]
         public IActionResult Privacy()
         {
             return View();

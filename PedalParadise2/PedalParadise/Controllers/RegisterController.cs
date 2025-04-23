@@ -13,11 +13,12 @@ namespace PedalParadise.Controllers
             _context = context;
         }
 
+        [Route("/Register")]
         public ActionResult Index() {
             return View();
         }
 
-        [Route("/Register/register")]
+        [Route("/RegisterAttempt")]
         [HttpPost]
         public IActionResult Register(Client client)
         {

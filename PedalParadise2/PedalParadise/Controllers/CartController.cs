@@ -20,6 +20,7 @@ namespace PedalParadise.Controllers
         }
 
         // GET: /Cart
+        [Route("/Cart")]
         public async Task<IActionResult> Index()
         {
             var cart = GetCart();
@@ -44,6 +45,7 @@ namespace PedalParadise.Controllers
         }
 
         // POST: /Cart/AddToCart
+        [Route("/Cart/Add")]
         [HttpPost]
         public async Task<IActionResult> AddToCart(int id, int quantity = 1)
         {
@@ -71,6 +73,7 @@ namespace PedalParadise.Controllers
         }
 
         // POST: /Cart/UpdateQuantity
+        [Route("Cart/UpdateQuantity")]
         [HttpPost]
         public IActionResult UpdateQuantity(int id, int quantity)
         {
@@ -92,6 +95,7 @@ namespace PedalParadise.Controllers
         }
 
         // POST: /Cart/RemoveFromCart
+        [Route("/Cart/RemoveFromCart")]
         [HttpPost]
         public IActionResult RemoveFromCart(int id)
         {
@@ -126,6 +130,7 @@ namespace PedalParadise.Controllers
         }
 
         // GET: /Cart/Checkout
+        [Route("/Cart/Checkout")]
         public IActionResult Checkout()
         {
             if (HttpContext.Session.GetInt32("UserId") == null)

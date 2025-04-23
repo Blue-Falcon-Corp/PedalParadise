@@ -17,6 +17,7 @@ namespace PedalParadise.Controllers
         }
 
         // GET: /Products
+        [Route("/Products")]
         public async Task<IActionResult> Index(string category, string search, string sortOrder)
         {
             ViewData["CurrentCategory"] = category;
@@ -60,6 +61,7 @@ namespace PedalParadise.Controllers
         }
 
         // GET: /Products/Details/5
+        [Route("/Products/Details/id")]
         public async Task<IActionResult> Details(int id)
         {
             var product = await _productService.GetProductByIdAsync(id);
@@ -72,6 +74,7 @@ namespace PedalParadise.Controllers
         }
 
         // GET: /Products/Create (Admin only)
+        [Route("Products/Create")]
         public IActionResult Create()
         {
             if (HttpContext.Session.GetString("UserType") != "Employee")
@@ -83,6 +86,7 @@ namespace PedalParadise.Controllers
         }
 
         // POST: /Products/Create
+        [Route("Products/Create")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Product product)
@@ -102,6 +106,7 @@ namespace PedalParadise.Controllers
         }
 
         // GET: /Products/Edit/5 (Admin only)
+        [Route("Products/Edit/id")]
         public async Task<IActionResult> Edit(int id)
         {
             if (HttpContext.Session.GetString("UserType") != "Employee")
@@ -119,6 +124,7 @@ namespace PedalParadise.Controllers
         }
 
         // POST: /Products/Edit/5
+        [Route("Products/Edit")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Product product)
@@ -143,6 +149,7 @@ namespace PedalParadise.Controllers
         }
 
         // GET: /Products/Delete/5 (Admin only)
+        [Route("Products/Delete/id")]
         public async Task<IActionResult> Delete(int id)
         {
             if (HttpContext.Session.GetString("UserType") != "Employee")
@@ -160,6 +167,7 @@ namespace PedalParadise.Controllers
         }
 
         // POST: /Products/Delete/5
+        [Route("Products/Delete")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
