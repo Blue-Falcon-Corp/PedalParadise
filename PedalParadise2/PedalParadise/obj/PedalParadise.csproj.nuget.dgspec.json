@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\Desktop\\PedalParadise\\PedalParadise2\\PedalParadise\\PedalParadise.csproj": {}
+    "C:\\Users\\n01611365\\Desktop\\PedalParadise\\PedalParadise2\\PedalParadise\\PedalParadise.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\Desktop\\PedalParadise\\PedalParadise2\\PedalParadise\\PedalParadise.csproj": {
+    "C:\\Users\\n01611365\\Desktop\\PedalParadise\\PedalParadise2\\PedalParadise\\PedalParadise.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Desktop\\PedalParadise\\PedalParadise2\\PedalParadise\\PedalParadise.csproj",
+        "projectUniqueName": "C:\\Users\\n01611365\\Desktop\\PedalParadise\\PedalParadise2\\PedalParadise\\PedalParadise.csproj",
         "projectName": "PedalParadise",
-        "projectPath": "C:\\Users\\User\\Desktop\\PedalParadise\\PedalParadise2\\PedalParadise\\PedalParadise.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Desktop\\PedalParadise\\PedalParadise2\\PedalParadise\\obj\\",
+        "projectPath": "C:\\Users\\n01611365\\Desktop\\PedalParadise\\PedalParadise2\\PedalParadise\\PedalParadise.csproj",
+        "packagesPath": "C:\\Users\\n01611365\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\n01611365\\Desktop\\PedalParadise\\PedalParadise2\\PedalParadise\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\n01611365\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -38,13 +38,7 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.100"
+        }
       },
       "frameworks": {
         "net6.0": {
@@ -73,8 +67,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -86,7 +79,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

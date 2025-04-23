@@ -1,19 +1,43 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿﻿// Models/User.cs
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
 namespace PedalParadise.Models
 {
-    public class User : IdentityUser
+    public class User
     {
-       [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int UserID { get; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
         [Key]
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public string Address { get; set; }
-        public string Phone { get; set; }
+        public int UserID { get; set; }
+
+        [Required]
+        [StringLength(100)]
+        public string FirstName { get; set; } = string.Empty;
+
+        [Required]
+        [StringLength(100)]
+        public string LastName { get; set; } = string.Empty;
+
+        [Required]
+        [StringLength(100)]
+        [EmailAddress]
+        public string Email { get; set; } = string.Empty;
+
+        [StringLength(20)]
+        public string? Phone { get; set; }
+
+        [StringLength(200)]
+        public string? Address { get; set; }
+
+        [Required]
+        [StringLength(20)]
+        public string UserType { get; set; } = string.Empty; // Employee, Client
+
+        [Required]
+        [StringLength(100)]
+        public string Password { get; set; } = string.Empty;
+
+        // Navigation properties
+        public virtual Employee? Employee { get; set; }
+        public virtual Client? Client { get; set; }
     }
 }

@@ -17,6 +17,7 @@ namespace PedalParadise.Controllers
             return View();
         }
 
+        [Route("/Register/register")]
         [HttpPost]
         public IActionResult Register(Client client)
         {
