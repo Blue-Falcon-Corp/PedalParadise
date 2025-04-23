@@ -13,4 +13,8 @@ namespace PedalParadise.Models
         // Navigation properties
         public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/geo

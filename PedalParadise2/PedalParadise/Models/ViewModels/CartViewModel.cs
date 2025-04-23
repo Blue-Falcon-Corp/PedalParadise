@@ -11,4 +11,8 @@ namespace PedalParadise.Models.ViewModels
         public decimal Price { get; set; }
         public decimal TotalPrice => Price * Quantity;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/geo

@@ -27,4 +27,8 @@ namespace PedalParadise.Models.ViewModels
         [Display(Name = "Security Code")]
         public string CardCVV { get; set; } = string.Empty;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/geo

@@ -21,4 +21,8 @@ namespace PedalParadise.Models
         public virtual Product? Product { get; set; }
         public virtual Client? Client { get; set; }
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/geo

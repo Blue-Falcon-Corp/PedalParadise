@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿﻿// Models/User.cs
+=======
+﻿// Models/User.cs
+>>>>>>> origin/geo
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

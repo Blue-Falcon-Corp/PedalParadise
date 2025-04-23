@@ -16,4 +16,8 @@ namespace PedalParadise.Models
         public virtual Client? Client { get; set; }
         public virtual ICollection<CartItem> CartItems { get; set; } = new List<CartItem>();
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/geo

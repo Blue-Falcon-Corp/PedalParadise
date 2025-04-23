@@ -1,0 +1,209 @@
+﻿@model PedalParadise.Models.Product
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<div class="mb-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+        <!-- Product Image -->
+        <div class="bg-white rounded-lg shadow-md p-4">
+            <div class="bg-gray-200 rounded-lg h-96 flex items-center justify-center">
+                <svg class="w-24 h-24 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                </svg>
+            </div>
+        </div>
+        
+        <!-- Product Info -->
+        <div>
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">@Model.Name</h1>
+            <p class="text-lg text-gray-600 mb-4">Category: @Model.Category</p>
+            <p class="text-2xl font-bold text-green-600 mb-6">$@Model.Price.ToString("F2")</p>
+            
+            <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                <h2 class="text-xl font-semibold text-gray-800 mb-4">Description</h2>
+                <p class="text-gray-700 mb-4">@Model.Description</p>
+                
+                <div class="flex items-center mb-4">
+                    <span class="text-gray-700 mr-2">Availability:</span>
+                    @if (Model.Stock > 0)
+                    {
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                            In Stock (@Model.Stock available)
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                            Out of Stock
+                        </span>
+                    }
+                </div>
+                
+                <form asp-controller="Cart" asp-action="AddToCart" method="post">
+                    <input type="hidden" name="id" value="@Model.ProductID" />
+                    <div class="flex items-center mb-4">
+                        <label for="quantity" class="text-gray-700 mr-2">Quantity:</label>
+                        <input type="number" id="quantity" name="quantity" value="1" min="1" max="@Model.Stock" 
+                               class="w-16 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-600" />
+                    </div>
+                    <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-md @(Model.Stock <= 0 ? "opacity-50 cursor-not-allowed" : "")" @(Model.Stock <= 0 ? "disabled" : "")>
+                        Add to Cart
+                    </button>
+                </form>
+            </div>
+            
+            <div class="flex space-x-4">
+                <a asp-controller="Products" asp-action="Index" class="text-green-600 hover:underline flex items-center">
+                    <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                    </svg>
+                    Back to Products
+                </a>
+                
+                @if (Context.Session.GetString("UserType") == "Employee")
+                {
+                    <a asp-action="Edit" asp-route-id="@Model.ProductID" class="text-blue-600 hover:underline flex items-center">
+                        <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                        </svg>
+                        Edit Product
+                    </a>
+                }
+            </div>
+        </div>
+    </div>
+    
+    <!-- Reviews Section -->
+    <div class="bg-white rounded-lg shadow-md p-6">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-6">Customer Reviews</h2>
+        
+        @if (Model.Reviews != null && Model.Reviews.Any())
+        {
+            <div class="space-y-6 mb-8">
+                @foreach (var review in Model.Reviews)
+                {
+                    <div class="border-b border-gray-200 pb-6">
+                        <div class="flex justify-between mb-2">
+                            <div class="flex items-center">
+                                <div class="flex">
+                                    @for (int i = 1; i <= 5; i++)
+                                    {
+                                        if (i <= review.Rating)
+                                        {
+                                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                            </svg>
+                                        }
+                                        else
+                                        {
+                                            <svg class="w-5 h-5 text-gray-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                            </svg>
+                                        }
+                                    }
+                                </div>
+                                <span class="ml-2 text-gray-700">by @review.Client.User.FirstName @review.Client.User.LastName</span>
+                            </div>
+                            <span class="text-gray-500 text-sm">@review.Date.ToString("MMMM dd, yyyy")</span>
+                        </div>
+                        <p class="text-gray-700">@review.Description</p>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <p class="bg-gray-50 p-4 rounded-md text-gray-700 mb-8">No reviews yet. Be the first to review this product!</p>
+        }
+        
+        @if (Context.Session.GetInt32("UserId") != null)
+        {
+            <div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">Write a Review</h3>
+                <form asp-controller="Reviews" asp-action="Create" method="post">
+                    <input type="hidden" name="ProductID" value="@Model.ProductID" />
+                    
+                    <div class="mb-4">
+                        <label for="Rating" class="block text-gray-700 mb-2">Rating</label>
+                        <div class="flex">
+                            <div class="flex items-center">
+                                @for (int i = 1; i <= 5; i++)
+                                {
+                                    <div class="star-rating mr-1">
+                                        <input type="radio" id="star@(i)" name="Rating" value="@i" />
+                                        <label for="star@(i)" class="text-gray-300 hover:text-yellow-400 text-2xl cursor-pointer">★</label>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="Description" class="block text-gray-700 mb-2">Comment</label>
+                        <textarea id="Description" name="Description" rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-600"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-md">
+                        Submit Review
+                    </button>
+                </form>
+            </div>
+        }
+        else
+        {
+            <p class="bg-blue-50 p-4 rounded-md text-blue-700">
+                Please <a asp-controller="Account" asp-action="Login" class="text-blue-600 hover:underline">log in</a> to leave a review.
+            </p>
+        }
+    </div>
+</div>
+
+@section Scripts {
+<style>
+    .star-rating input {
+        display: none;
+    }
+    .star-rating input:checked ~ label {
+        color: #f59e0b;
+    }
+</style>
+<script>
+    // Star rating functionality
+    document.querySelectorAll('.star-rating label').forEach(function(star) {
+        star.addEventListener('mouseover', function() {
+            const ratingValue = this.previousElementSibling.value;
+            document.querySelectorAll('.star-rating label').forEach(function(label, index) {
+                if (index < ratingValue) {
+                    label.classList.add('text-yellow-400');
+                    label.classList.remove('text-gray-300');
+                } else {
+                    label.classList.add('text-gray-300');
+                    label.classList.remove('text-yellow-400');
+                }
+            });
+        });
+    });
+    
+    document.querySelector('.star-rating').parentElement.addEventListener('mouseleave', function() {
+        const checkedStar = document.querySelector('.star-rating input:checked');
+        if (checkedStar) {
+            const ratingValue = checkedStar.value;
+            document.querySelectorAll('.star-rating label').forEach(function(label, index) {
+                if (index < ratingValue) {
+                    label.classList.add('text-yellow-400');
+                    label.classList.remove('text-gray-300');
+                } else {
+                    label.classList.add('text-gray-300');
+                    label.classList.remove('text-yellow-400');
+                }
+            });
+        } else {
+            document.querySelectorAll('.star-rating label').forEach(function(label) {
+                label.classList.add('text-gray-300');
+                label.classList.remove('text-yellow-400');
+            });
+        }
+    });
+</script>
+}
