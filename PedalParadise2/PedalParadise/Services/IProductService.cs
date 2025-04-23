@@ -15,8 +15,5 @@ namespace PedalParadise.Services
         Task<IEnumerable<Product>> SearchProductsAsync(string searchTerm);
         Task<IEnumerable<Product>> GetFeaturedProductsAsync(int count);
     }
-<<<<<<< HEAD
+
 }
-=======
-}
->>>>>>> origin/geo

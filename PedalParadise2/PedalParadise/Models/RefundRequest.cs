@@ -20,8 +20,5 @@ namespace PedalParadise.Models
         // Navigation properties
         public virtual Order? Order { get; set; }
     }
-<<<<<<< HEAD
+
 }
-=======
-}
->>>>>>> origin/geo

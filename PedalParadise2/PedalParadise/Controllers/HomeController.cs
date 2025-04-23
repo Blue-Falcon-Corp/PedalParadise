@@ -18,7 +18,8 @@ namespace PedalParadise.Controllers
             _logger = logger;
             _productService = productService;
         }
-
+        
+        [Route("/")]
         public async Task<IActionResult> Index()
         {
             var featuredProducts = await _productService.GetFeaturedProductsAsync(6);

@@ -173,8 +173,5 @@ namespace PedalParadise.Controllers
             return RedirectToAction(nameof(Index));
         }
     }
-<<<<<<< HEAD
+
 }
-=======
-}
->>>>>>> origin/geo

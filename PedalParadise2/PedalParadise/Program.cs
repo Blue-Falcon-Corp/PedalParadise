@@ -1,21 +1,25 @@
-<<<<<<< HEAD
-using PedalParadise.Controllers.Data;
-using Microsoft.EntityFrameworkCore;
-=======
-using Microsoft.EntityFrameworkCore;
 using PedalParadise.Data;
->>>>>>> origin/geo
+using Microsoft.EntityFrameworkCore;
+using PedalParadise.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Add database context
 builder.Services.AddDbContext<PedalParadiseContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
+//add Interface services
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IRepairService, RepairService>();
+builder.Services.AddScoped<IUserService, UserService>();
+/*builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IProductService, ProductService>();
+*/
 // Add session services
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
@@ -42,17 +46,17 @@ app.UseRouting();
 app.UseSession();
 
 app.UseAuthorization();
-
-app.MapControllerRoute(
+app.MapControllers();
+/*app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-
+*/
 // Ensure the database is created
-using (var scope = app.Services.CreateScope())
+/*using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
     var dbContext = services.GetRequiredService<PedalParadiseContext>();
     dbContext.Database.EnsureCreated();
-}
+}*/
 
 app.Run();

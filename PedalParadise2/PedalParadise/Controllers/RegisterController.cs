@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PedalParadise.Controllers.Data;
+using PedalParadise.Data;
 using PedalParadise.Models;
 
 namespace PedalParadise.Controllers
 {
     public class RegisterController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly PedalParadiseContext _context;
 
-        public RegisterController(ApplicationDbContext context)
+        public RegisterController(PedalParadiseContext context)
         {
             _context = context;
         }

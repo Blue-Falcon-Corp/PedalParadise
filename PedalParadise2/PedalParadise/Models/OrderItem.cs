@@ -1,17 +1,9 @@
-<<<<<<< HEAD
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
 namespace PedalParadise.Models
 {
-    [Keyless]
-=======
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace PedalParadise.Models
-{
->>>>>>> origin/geo
+    
     public class OrderItem
     {
         public int OrderID { get; set; }
@@ -27,8 +19,5 @@ namespace PedalParadise.Models
         public virtual Order? Order { get; set; }
         public virtual Product? Product { get; set; }
     }
-<<<<<<< HEAD
+
 }
-=======
-}
->>>>>>> origin/geo

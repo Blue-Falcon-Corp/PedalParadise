@@ -31,11 +31,13 @@ namespace PedalParadise.Services
 
         public async Task<Product> GetProductByIdAsync(int id)
         {
+#pragma warning disable CS8603 // Possible null reference return.
             return await _context.Products
                 .Include(p => p.Reviews)
                 .ThenInclude(r => r.Client)
                 .ThenInclude(c => c.User)
                 .FirstOrDefaultAsync(p => p.ProductID == id);
+#pragma warning restore CS8603 // Possible null reference return.
         }
 
         public async Task<Product> AddProductAsync(Product product)

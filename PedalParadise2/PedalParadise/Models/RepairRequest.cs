@@ -34,8 +34,5 @@ namespace PedalParadise.Models
 
         public virtual Employee? AssignedEmployee { get; set; }
     }
-<<<<<<< HEAD
+
 }
-=======
-}
->>>>>>> origin/geo

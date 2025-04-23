@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PedalParadise.Controllers.Data;
+using PedalParadise.Data;
 using PedalParadise.Models;
 
 
@@ -7,8 +7,8 @@ namespace PedalParadise.Controllers
 {
     public class EmployeeController : Controller
     {
-        private readonly ApplicationDbContext _context;
-        public EmployeeController(ApplicationDbContext context)
+        private readonly PedalParadiseContext _context;
+        public EmployeeController(PedalParadiseContext context)
         {
             _context = context;
         }

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace PedalParadise.Models
 {
@@ -17,8 +16,5 @@ namespace PedalParadise.Models
         public virtual ICollection<Review> Reviews { get; set; } = new List<Review>();
         public virtual ICollection<RepairRequest> RepairRequests { get; set; } = new List<RepairRequest>();
     }
-<<<<<<< HEAD
+
 }
-=======
-}
->>>>>>> origin/geo
