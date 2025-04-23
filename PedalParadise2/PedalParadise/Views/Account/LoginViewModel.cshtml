@@ -21,15 +21,10 @@
             <span asp-validation-for="Password" class="text-red-500 text-sm"></span>
         </div>
         
-        <div class="flex items-center mb-6">
-            <input asp-for="RememberMe" type="checkbox" class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded" />
-            <label asp-for="RememberMe" class="ml-2 block text-gray-700">Remember me</label>
-        </div>
-        
         <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-md">Login</button>
     </form>
     
     <p class="mt-4 text-center text-gray-600">
-        Don't have an account? <a asp-action="Register" class="text-green-600 hover:underline">Register</a>
+        Don't have an account? <a asp-action="Index" asp-controller="Register" class="text-green-600 hover:underline">Register</a>
     </p>
 </div>

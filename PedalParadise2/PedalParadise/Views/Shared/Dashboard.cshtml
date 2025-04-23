@@ -1,0 +1,65 @@
+﻿@page "/Dashboard"   
+
+<h2>Account Page</h2>  
+
+<div class="account-page">  
+   <div class="section">  
+       <h4>Account Information</h4>  
+       <p>Name: John Doe</p>  
+       <p>Email: john.doe@example.com</p>  
+       <button class="btn btn-primary">Edit Information</button>  
+   </div>  
+
+   <div class="section">  
+       <h4>Order History</h4>  
+       <table class="table">  
+           <thead>  
+               <tr>  
+                   <th>Order ID</th>  
+                   <th>Date</th>  
+                   <th>Status</th>  
+                   <th>Total</th>  
+               </tr>  
+           </thead>  
+           <tbody>  
+               <tr>  
+                   <td>#12345</td>  
+                   <td>2023-10-01</td>  
+                   <td>Shipped</td>  
+                   <td>$150.00</td>  
+               </tr>  
+               <tr>  
+                   <td>#12346</td>  
+                   <td>2023-09-15</td>  
+                   <td>Delivered</td>  
+                   <td>$200.00</td>  
+               </tr>  
+           </tbody>  
+       </table>  
+   </div>  
+
+   <div class="section">  
+       <h4>Change Password</h4>  
+       <button class="btn btn-warning">Change Password</button>  
+   </div>  
+</div>  
+
+<style>  
+   .account-page {  
+       margin: 20px;  
+   }  
+   .section {  
+       margin-bottom: 20px;  
+   }  
+   .table {  
+       width: 100%;  
+       border-collapse: collapse;  
+   }  
+   .table th, .table td {  
+       border: 1px solid #ddd;  
+       padding: 8px;  
+   }  
+   .table th {  
+       background-color: #f4f4f4;  
+   }  
+</style>
