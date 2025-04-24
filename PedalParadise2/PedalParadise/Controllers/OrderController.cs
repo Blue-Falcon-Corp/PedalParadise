@@ -23,6 +23,7 @@ namespace PedalParadise.Controllers
         }
 
         // GET: /Orders/History
+        [Route("/Orders/History")]
         public async Task<IActionResult> History()
         {
             var userId = HttpContext.Session.GetInt32("UserId");
@@ -39,6 +40,7 @@ namespace PedalParadise.Controllers
         }
 
         // GET: /Orders/Details/5
+        [Route("Orders/Details/")]
         public async Task<IActionResult> Details(int id)
         {
             var userId = HttpContext.Session.GetInt32("UserId");
@@ -64,6 +66,7 @@ namespace PedalParadise.Controllers
         }
 
         // POST: /Orders/Checkout
+        [Route("/Orders/Checkout")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Checkout(CheckoutViewModel model)
@@ -122,6 +125,7 @@ namespace PedalParadise.Controllers
         }
 
         // GET: /Orders/Confirmation/5
+        [Route("/Orders/Confirmation/")]
         public async Task<IActionResult> Confirmation(int id)
         {
             var userId = HttpContext.Session.GetInt32("UserId");
@@ -140,6 +144,7 @@ namespace PedalParadise.Controllers
         }
 
         // GET: /Orders/Cancel/5
+        [Route("/Orders/Cancel/")]
         public async Task<IActionResult> Cancel(int id)
         {
             var userId = HttpContext.Session.GetInt32("UserId");
@@ -165,6 +170,7 @@ namespace PedalParadise.Controllers
         }
 
         // POST: /Orders/CancelConfirmed/5
+        [Route("/Orders/CancelConfirmed/")]
         [HttpPost, ActionName("CancelConfirmed")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CancelConfirmed(int id)

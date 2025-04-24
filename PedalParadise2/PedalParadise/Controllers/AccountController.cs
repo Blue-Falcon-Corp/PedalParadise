@@ -17,9 +17,10 @@ namespace PedalParadise.Controllers
         }
 
         // GET: /Account/Register
+        [Route("/Register")]
         public IActionResult Register()
         {
-            return View();
+            return View("RegisterViewModel");
         }
 
         [HttpPost]
@@ -71,9 +72,10 @@ namespace PedalParadise.Controllers
         }
 
         // GET: /Account/Login
+        [Route("/Login")]
         public IActionResult Login()
         {
-            return View();
+            return View("LoginViewModel");
         }
 
         // POST: /Account/Login
@@ -103,6 +105,7 @@ namespace PedalParadise.Controllers
         }
 
         // GET: /Account/Logout
+        [Route("/Logout")]
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
@@ -110,6 +113,7 @@ namespace PedalParadise.Controllers
         }
 
         // GET: /Account/Profile
+        [Route("/Account/Profile")]
         public async Task<IActionResult> Profile()
         {
             var userId = HttpContext.Session.GetInt32("UserId");
@@ -128,6 +132,7 @@ namespace PedalParadise.Controllers
         }
 
         // GET: /Account/Edit
+        [Route("/Account/Edit")]
         public async Task<IActionResult> Edit()
         {
             var userId = HttpContext.Session.GetInt32("UserId");
