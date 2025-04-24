@@ -3,29 +3,45 @@
     ViewData["Title"] = "Contact Us";
 }
 
-<section class="contact">
-    <div class="container">
-        <h1>@ViewData["Title"]</h1>
-        <hr />
+<div class="container-fluid bg-light py-5 text-center">
+    <h1 class="fw-bold text-success">@ViewData["Title"]</h1>
+    <p class="text-muted">Have a question? Need assistance? We're here to help! Reach out to our team anytime.</p>
+    <hr class="w-50 mx-auto">
+</div>
 
-        <div class="sales">
-            <h2>Contact Sales</h2>
-            <p>Email: sales@bikestore.com</p>
-            <p>Phone: (800) 555-1234</p>
-            <p>Hours: Monday to Friday, 9 AM - 6 PM EST</p>
+<!-- Contact Information -->
+<div class="container py-5">
+    <div class="row g-4">
+        <!-- Sales Section -->
+        <div class="col-md-4">
+            <div class="p-4 bg-white shadow rounded text-center">
+                <h2 class="fw-bold text-dark">Contact Sales</h2>
+                <p class="text-muted">For bike purchases and special offers.</p>
+                <p><i class="bi bi-envelope text-success"></i> sales@bikestore.com</p>
+                <p><i class="bi bi-telephone text-success"></i> (800) 555-1234</p>
+                <p><i class="bi bi-clock text-success"></i> Mon-Fri, 9 AM - 6 PM EST</p>
+            </div>
         </div>
 
-        <div class="support">
-            <h2>Customer Support</h2>
-            <p>Email: support@bikestore.com</p>
-            <p>Phone: (800) 555-5678</p>
-            <p>Hours: 24/7 Support Available</p>
+        <!-- Support Section -->
+        <div class="col-md-4">
+            <div class="p-4 bg-white shadow rounded text-center">
+                <h2 class="fw-bold text-dark">Customer Support</h2>
+                <p class="text-muted">For technical help and service inquiries.</p>
+                <p><i class="bi bi-envelope text-success"></i> support@bikestore.com</p>
+                <p><i class="bi bi-telephone text-success"></i> (800) 555-5678</p>
+                <p><i class="bi bi-clock text-success"></i> Available 24/7</p>
+            </div>
         </div>
 
-        <div class="location">
-            <h2>Our Location</h2>
-            <p>Address: 123 Cycling Lane, Adventure City, FL 98765</p>
-            <p>Visit us at our physical store to explore our latest collection and meet our cycling experts.</p>
+        <!-- Location Section -->
+        <div class="col-md-4">
+            <div class="p-4 bg-white shadow rounded text-center">
+                <h2 class="fw-bold text-dark">Our Location</h2>
+                <p class="text-muted">Come visit us and explore our latest collections.</p>
+                <p><i class="bi bi-geo-alt text-success"></i> 123 Cycling Lane, Adventure City, FL 98765</p>
+                <p>We welcome cycling enthusiasts of all levels!</p>
+            </div>
         </div>
     </div>
-</section>
+</div>

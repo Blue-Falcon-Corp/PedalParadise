@@ -1,0 +1,28 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+<div class="d-flex justify-content-end col-4">
+    
+    @{
+        var username = Context.Session.GetString("UserName");
+        Console.WriteLine("Session Username: " + username);
+    }
+    @if (HttpContextAccessor.HttpContext.Session.GetString("UserName") != null)
+    {
+        <ul style="list-style-type:none;" class="d-md-flex justify-content-end align-items-middle">
+            <li><a class="btn btn-info m-2" role="button" href="@Url.Action("Profile", "Account")">Profile</a></li>
+            <li>
+                <form method="post" asp-action="Logout" asp-controller="Account">
+                    <button type="submit" class="btn btn-danger m-2">Logout</button>
+                </form>
+            </li>
+        </ul>
+    }
+
+    else
+    {
+        <ul style="list-style-type:none;" class="d-md-flex justify-content-end align-items-middle">
+            <li><a class="btn btn-info m-2" role="button" href="@Url.Action("Login", "Account")">Login</a></li>
+            <li><a class="btn btn-info m-2" role="button" href="@Url.Action("Register", "Account")">Register</a></li>
+        </ul>
+    }
+</div>

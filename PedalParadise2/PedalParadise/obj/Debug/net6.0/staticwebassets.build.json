@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "agITP17EgZxXO5lVi3pjc+yPLcZbGA2MybSRXeDYng8=",
+  "Hash": "merYexwTBBbVFRxzTjH+goyaPZ9dulBvRNl4XjeKD4o=",
   "Source": "PedalParadise",
   "BasePath": "_content/PedalParadise",
   "Mode": "Default",
@@ -49,6 +49,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\n01611365\\Desktop\\PedalParadise\\PedalParadise2\\PedalParadise\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\PedalParadise.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\Users\\n01611365\\Desktop\\PedalParadise\\PedalParadise2\\PedalParadise\\wwwroot\\bike-repair.jpg",
+      "SourceId": "PedalParadise",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\n01611365\\Desktop\\PedalParadise\\PedalParadise2\\PedalParadise\\wwwroot\\",
+      "BasePath": "_content/PedalParadise",
+      "RelativePath": "bike-repair.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\bike-repair.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\n01611365\\Desktop\\PedalParadise\\PedalParadise2\\PedalParadise\\wwwroot\\bike-repair-2.webp",
+      "SourceId": "PedalParadise",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\n01611365\\Desktop\\PedalParadise\\PedalParadise2\\PedalParadise\\wwwroot\\",
+      "BasePath": "_content/PedalParadise",
+      "RelativePath": "bike-repair-2.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\bike-repair-2.webp"
     },
     {
       "Identity": "C:\\Users\\n01611365\\Desktop\\PedalParadise\\PedalParadise2\\PedalParadise\\wwwroot\\css\\site.css",

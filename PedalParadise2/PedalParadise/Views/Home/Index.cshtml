@@ -2,85 +2,86 @@
 @{
     ViewData["Title"] = "Home Page";
 }
-<!--title, motto and others-->
-<div class="container-fluid text-center m-3">
+<!-- Title and Motto -->
+<div class="container-fluid text-center bg-light py-5">
     <h1 class="display-3">🌴🚲 Pedal Paradise 🚲🌴</h1>
-    <p class="display-6">"Your ride starts here."</p>
-    <p class="">Your one-stop shop for quality bicycles, accessories, and expert repair services.</p>
+    <p class="lead">"Your ride starts here."</p>
+    <p class="text-muted">Your one-stop shop for quality bicycles, accessories, and expert repair services.</p>
 </div>
 
 <!-- Hero Section -->
-<div class="container text-center">
-    <div class="btn-group justify-content-center" role="group">       
-        <a asp-controller="Products" asp-action="Index" type="button" class="btn btn-lg btn-info col">Shop Now</a>
-        <a asp-controller="Repairs" asp-action="Index" type="button" class="btn btn-lg btn-warning col">Repair Services</a>
+<div class="container-fluid bg-success text-white py-5 text-center">
+    <h2 class="mb-4">Ready to Ride?</h2>
+    <div class="d-grid gap-3 d-sm-flex justify-content-center">
+        <a asp-controller="Products" asp-action="Index" class="btn btn-lg btn-light text-success fw-bold px-4">Shop Now</a>
+        <a asp-controller="Repairs" asp-action="Index" class="btn btn-lg btn-outline-light px-4">Repair Services</a>
     </div>
 </div>
 
-<!-- Featured Products -->
-<div class="container pt-4 text-center mb-4">
-    <h2 class="mb-6">Featured Products</h2>
-    <div class="row">
+<!-- Featured Products Section -->
+<div class="container py-5">
+    <h2 class="text-center fw-bold mb-5">Featured Products</h2>
+    <div class="row g-4">
         @foreach (var product in Model)
         {
-            <div class="card col-lg-4 col-md-6 ">
-                <img src="~/product-image.jpeg" class="card-img-top" alt="product image">
-                <div class="card-body">
-                    <h5 class="card-title">@product.Name</h5>
-                    <p class="card-text">@product.Description</p>
-                    <div class="flex items-center">
-                        <span class="lead"><strong>$@product.Price.ToString("F2")</strong></span>
-                        <form asp-controller="Cart" asp-action="AddToCart" method="post">
-                            <input type="hidden" name="id" value="@product.ProductID" />
-                            <input type="hidden" name="quantity" value="1" />
-                            <button type="submit" class="text-black px-4 py-2 rounded"><strong>Add to Cart</strong></button>
-                        </form>
+            <div class="col-lg-4 col-md-6">
+                <div class="card shadow-sm">
+                    <img src="~/product-image.jpeg" class="card-img-top" alt="Product Image">
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-bold">@product.Name</h5>
+                        <p class="card-text">@product.Description</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="text-success fw-bold">$@product.Price.ToString("F2")</span>
+                            <form asp-controller="Cart" asp-action="AddToCart" method="post">
+                                <input type="hidden" name="id" value="@product.ProductID" />
+                                <input type="hidden" name="quantity" value="1" />
+                                <button type="submit" class="btn btn-outline-success btn-sm">Add to Cart</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         }
-        
     </div>
-    <div class="text-center mt-6">
-        <a asp-controller="Products" asp-action="Index" class="inline-block border border-green-600 text-green-600 hover:bg-green-600 hover:text-white px-6 py-2 rounded-lg">View All Products</a>
+    <div class="text-center mt-5">
+        <a asp-controller="Products" asp-action="Index" class="btn btn-success px-4">View All Products</a>
     </div>
 </div>
 
 <!-- Features Section -->
-<div class="container mt-4">
-    <div class="row justify-content-center">
-        <div class="col-lg-4 col-md-7 text-center row p-2">
-            <div class="col justify-center">
-                <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
-                </svg>
+<div class="container-fluid bg-light py-5">
+    <div class="container">
+        <h2 class="text-center fw-bold mb-5">Why Choose Us?</h2>
+        <div class="row text-center g-4">
+            <!-- Quality Bikes -->
+            <div class="col-lg-4">
+                <div class="p-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="8em" height="auto" fill="currentColor" class="bi bi-bicycle" viewBox="0 0 16 16">
+                      <path d="M4 4.5a.5.5 0 0 1 .5-.5H6a.5.5 0 0 1 0 1v.5h4.14l.386-1.158A.5.5 0 0 1 11 4h1a.5.5 0 0 1 0 1h-.64l-.311.935.807 1.29a3 3 0 1 1-.848.53l-.508-.812-2.076 3.322A.5.5 0 0 1 8 10.5H5.959a3 3 0 1 1-1.815-3.274L5 5.856V5h-.5a.5.5 0 0 1-.5-.5m1.5 2.443-.508.814c.5.444.85 1.054.967 1.743h1.139zM8 9.057 9.598 6.5H6.402zM4.937 9.5a2 2 0 0 0-.487-.877l-.548.877zM3.603 8.092A2 2 0 1 0 4.937 10.5H3a.5.5 0 0 1-.424-.765zm7.947.53a2 2 0 1 0 .848-.53l1.026 1.643a.5.5 0 1 1-.848.53z"/>
+                    </svg>
+                    <h5 class="fw-bold">Quality Bikes</h5>
+                    <p class="text-muted">Explore our range of road bikes, mountain bikes, electric bikes, and hybrids from top brands.</p>
+                </div>
             </div>
-            <div class="col align-content-center">
-                <h3 class="text-xl font-semibold mb-2">Quality Bikes</h3>
-                <p class="text-gray-600">Explore our range of road bikes, mountain bikes, electric bikes, and hybrid bikes from top brands.</p>
+            <!-- Expert Repairs -->
+            <div class="col-lg-4">
+                <div class="p-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="8em" height="auto" fill="currentColor" class="bi bi-tools" viewBox="0 0 16 16">
+                      <path d="M1 0 0 1l2.2 3.081a1 1 0 0 0 .815.419h.07a1 1 0 0 1 .708.293l2.675 2.675-2.617 2.654A3.003 3.003 0 0 0 0 13a3 3 0 1 0 5.878-.851l2.654-2.617.968.968-.305.914a1 1 0 0 0 .242 1.023l3.27 3.27a.997.997 0 0 0 1.414 0l1.586-1.586a.997.997 0 0 0 0-1.414l-3.27-3.27a1 1 0 0 0-1.023-.242L10.5 9.5l-.96-.96 2.68-2.643A3.005 3.005 0 0 0 16 3q0-.405-.102-.777l-2.14 2.141L12 4l-.364-1.757L13.777.102a3 3 0 0 0-3.675 3.68L7.462 6.46 4.793 3.793a1 1 0 0 1-.293-.707v-.071a1 1 0 0 0-.419-.814zm9.646 10.646a.5.5 0 0 1 .708 0l2.914 2.915a.5.5 0 0 1-.707.707l-2.915-2.914a.5.5 0 0 1 0-.708M3 11l.471.242.529.026.287.445.445.287.026.529L5 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026z"/>
+                    </svg>
+                    <h5 class="fw-bold">Expert Repairs</h5>
+                    <p class="text-muted">Our skilled mechanics provide professional repair and maintenance services to keep your bike in top condition.</p>
+                </div>
             </div>
-        </div>
-        <div class="col-lg-4 col-md-7 text-center row p-2">
-            <div class="col justify-center">
-                <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                </svg>
-            </div>
-            <div class="col align-content-center">
-                <h3 class="text-xl font-semibold mb-2">Expert Repairs</h3>
-                <p class="text-gray-600">Our skilled mechanics provide professional repair and maintenance services to keep your bike in top condition.</p>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-7 text-center row p-2">
-            <div class="col justify-center">
-                <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                </svg>
-            </div>
-            <div class="col align-content-center">
-                <h3 class="text-xl font-semibold mb-2">Community Events</h3>
-                <p class="text-gray-600">Join our community of cycling enthusiasts for group rides, workshops, and other exciting events.</p>
+            <!-- Community Events -->
+            <div class="col-lg-4">
+                <div class="p-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="8em" height="auto" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                      <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/>
+                    </svg>
+                    <h5 class="fw-bold">Community Events</h5>
+                    <p class="text-muted">Join our cycling community for group rides, workshops, and exciting events.</p>
+                </div>
             </div>
         </div>
     </div>

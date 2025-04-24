@@ -19,6 +19,7 @@ namespace PedalParadise.Controllers
         }
 
         // GET: /Repairs
+        [Route("/Repairs")]
         public async Task<IActionResult> Index()
         {
             var userId = HttpContext.Session.GetInt32("UserId");
@@ -27,7 +28,7 @@ namespace PedalParadise.Controllers
             if (userId == null)
             {
                 // Show general repair info for non-logged in users
-                return View("RepairServices");
+                return View("RepairService");
             }
 
             if (userType == "Employee")
@@ -40,7 +41,7 @@ namespace PedalParadise.Controllers
             {
                 // Show user's repairs
                 var repairs = await _repairService.GetRepairsByClientIdAsync(userId.Value);
-                return View("ClientRepairs", repairs);
+                return View("Index", repairs);
             }
         }
 

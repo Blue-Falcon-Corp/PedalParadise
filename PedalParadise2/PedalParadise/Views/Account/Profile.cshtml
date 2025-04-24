@@ -1,0 +1,67 @@
+﻿@model PedalParadise.Models.User
+
+<div class="container d-flex justify-content-center">
+    <div class="row w-75">
+        <!-- Side Navigation -->
+        <div class="col-md-4">
+            <div class="card shadow-lg">
+                <div class="card-body">
+                    <h5 class="fw-bold text-dark">Account Settings</h5>
+                    <hr />
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a asp-action="Profile" asp-controller="Account" class="nav-link text-dark">Account Information</a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-action="History" asp-controller="Orders" class="nav-link text-dark">Order History</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Information -->
+        <div class="col-md-8">
+            <div class="card shadow-lg p-4">
+                <h1 class="h3 fw-bold text-dark mb-4">Profile Information</h1>
+
+                <form asp-action="UpdateProfile" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6">
+                            <label asp-for="FirstName" class="form-label">First Name</label>
+                            <input asp-for="FirstName" class="form-control" />
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="LastName" class="form-label">Last Name</label>
+                            <input asp-for="LastName" class="form-control" />
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label">Email</label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Phone" class="form-label">Phone Number</label>
+                        <input asp-for="Phone" class="form-control" />
+                        <span asp-validation-for="Phone" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Address" class="form-label">Address</label>
+                        <textarea asp-for="Address" class="form-control" rows="3"></textarea>
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-success w-100">Update Profile</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

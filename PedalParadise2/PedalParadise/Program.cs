@@ -15,11 +15,10 @@ builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IRepairService, RepairService>();
 builder.Services.AddScoped<IUserService, UserService>();
-/*builder.Services.AddScoped<IProductService, ProductService>();
-builder.Services.AddScoped<IProductService, ProductService>();
-builder.Services.AddScoped<IProductService, ProductService>();
-builder.Services.AddScoped<IProductService, ProductService>();
-*/
+
+//add partials usage
+builder.Services.AddHttpContextAccessor();
+
 // Add session services
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
@@ -45,6 +44,7 @@ app.UseRouting();
 
 app.UseSession();
 
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 /*app.MapControllerRoute(

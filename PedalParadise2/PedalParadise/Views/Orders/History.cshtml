@@ -1,0 +1,103 @@
+﻿@model List<PedalParadise.Models.Order>
+
+<div class="container-fluid d-flex justify-content-start">
+    <div class="row w-75">
+        <!-- Side Navigation -->
+        <div class="col-md-4">
+            <div class="card shadow-lg">
+                <div class="card-body">
+                    <h5 class="fw-bold text-dark">Account Settings</h5>
+                    <hr />
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a asp-action="Profile" asp-controller="Account" class="nav-link text-dark">Account Information</a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-action="History" asp-controller="Orders" class="nav-link text-dark active">Order History</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Orders List -->
+        <div class="col-md-8 container">
+            <div class="card shadow-lg p-4 table-responsive ">
+                <h1 class="h3 fw-bold text-dark mb-4">Order History</h1>
+
+                @if (Model != null && Model.Any())
+                {
+                    <table class="table table-hover ">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Order #</th>
+                                <th>Date</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var order in Model)
+                            {
+                                <tr>
+                                    <td>@order.OrderID</td>
+                                    <td>@order.Date.ToString("yyyy-MM-dd")</td>
+                                    <td>@order.TotalAmount.ToString("F2")</td>
+                                    <td>@order.Status</td>
+                                    <td>
+                                        <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#orderModal"
+                                            data-orderid="@order.OrderID" data-date="@order.Date.ToString("yyyy-MM-dd")"
+                                            data-clientid="@order.ClientID" data-total="@order.TotalAmount.ToString("F2")"
+                                            data-paymentid="@order.PaymentID" data-status="@order.Status">
+                                            View
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <div class="modal fade" id="orderModal" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Order Details</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <ul class="list-group">
+                                        <li class="list-group-item"><strong>Order ID:</strong> <span id="modalOrderID"></span></li>
+                                        <li class="list-group-item"><strong>Date:</strong> <span id="modalDate"></span></li>
+                                        <li class="list-group-item"><strong>Client ID:</strong> <span id="modalClientID"></span></li>
+                                        <li class="list-group-item"><strong>Total Amount:</strong> $<span id="modalTotal"></span></li>
+                                        <li class="list-group-item"><strong>Payment ID:</strong> <span id="modalPaymentID"></span></li>
+                                        <li class="list-group-item"><strong>Status:</strong> <span id="modalStatus"></span></li>
+                                    </ul>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <p class="text-muted">No orders found.</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var orderModal = document.getElementById('orderModal');
+    orderModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget; // Button that triggered the modal
+        document.getElementById('modalOrderID').innerText = button.getAttribute('data-orderid');
+        document.getElementById('modalDate').innerText = button.getAttribute('data-date');
+        document.getElementById('modalClientID').innerText = button.getAttribute('data-clientid');
+        document.getElementById('modalTotal').innerText = button.getAttribute('data-total');
+        document.getElementById('modalPaymentID').innerText = button.getAttribute('data-paymentid') || 'N/A';
+        document.getElementById('modalStatus').innerText = button.getAttribute('data-status');
+    });
+</script>

@@ -11,38 +11,42 @@
 </head>
 <body class="container-fluid">
     <header class="container-fluid">
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Pedal Paradise 🚲🌴</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+        <nav class="navbar navbar-expand-sm navbar-light bg-light border-bottom shadow-sm">
+            <div class="container">
+                <!-- Brand Logo -->
+                <a class="navbar-brand fw-bold text-success" asp-area="" asp-controller="Home" asp-action="Index">
+                    Pedal Paradise 🚲🌴
+                </a>
+            
+                <!-- Toggler for Mobile View -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex row justify-content-end">
+            
+                <!-- Navbar Links -->
+                <div class="navbar-collapse collapse d-sm-inline-flex row justify-content-end" id="navbarSupportedContent">
                     <ul class="navbar-nav flex-grow-1 col-4 justify-content-end">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Index">Shop</a>
+                            <a class="nav-link text-success fw-semibold" asp-area="" asp-controller="Products" asp-action="Index">Shop</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">About us</a>
+                            <a class="nav-link text-success fw-semibold" asp-area="" asp-controller="Home" asp-action="About">About Us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Cart" asp-action="Index">Cart</a>
+                            <a class="nav-link text-success fw-semibold" asp-area="" asp-controller="Cart" asp-action="Index">Cart</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-success fw-semibold" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                     </ul>
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end col-4">
-                        <a class="btn btn-info m-2" role="button" asp-action="Login" asp-controller="Account">log in</a>
-                        <a class="btn btn-warning m-2" role="button" asp-action="Register" asp-controller="Account">sign up</a>
-                    </div>
+                    <!-- Login/Logout Partial -->
+                    @Html.Partial("_LoginPartial")
                 </div>
-                
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div class="container-fluid">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>

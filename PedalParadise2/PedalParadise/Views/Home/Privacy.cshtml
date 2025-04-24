@@ -2,66 +2,59 @@
     ViewData["Title"] = "Privacy Policy";
 }
 
-    <div class="container">
-        <h1 class="text-center">Privacy Policy</h1>
-        <p><strong>Effective Date:</strong> [Insert Date]</p>
-        <p><strong>Last Updated:</strong> [Insert Date]</p>
-
-        <div class="section">
-            <h2>1. Introduction</h2>
-            <p>Welcome to [Bike Store Name] ("Company", "we", "our", "us"). We value your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, and safeguard your information when you visit our website, [Website URL], and purchase our products.</p>
-        </div>
-
-        <div class="section">
-            <h2>2. Information We Collect</h2>
-            <ul>
-                <li><strong>Personal Information:</strong> Name, email address, phone number, shipping address, payment details.</li>
-                <li><strong>Account Information:</strong> Login credentials, purchase history.</li>
-                <li><strong>Technical Information:</strong> IP address, device type, browser type, and analytics data.</li>
-                <li><strong>Cookies and Tracking:</strong> Data collected via cookies to improve user experience.</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2>3. How We Use Your Information</h2>
-            <ul>
-                <li>To process and fulfill orders.</li>
-                <li>To communicate with you regarding orders, promotions, and updates.</li>
-                <li>To improve our website and services.</li>
-                <li>To comply with legal obligations.</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2>4. Sharing Your Information</h2>
-            <p>We do <strong>not</strong> sell your personal information. However, we may share your data with:</p>
-            <ul>
-                <li>Third-party service providers for payment processing and shipping.</li>
-                <li>Legal authorities if required by law.</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2>5. Security Measures</h2>
-            <p>We implement industry-standard security measures to protect your data. However, no method is completely secure, and we encourage users to safeguard their login credentials.</p>
-        </div>
-
-        <div class="section">
-            <h2>6. Your Rights & Choices</h2>
-            <ul>
-                <li>Access, correct, or delete your personal information.</li>
-                <li>Opt out of marketing communications.</li>
-                <li>Manage cookie preferences.</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2>7. Contact Us</h2>
-            <p>If you have any questions regarding this Privacy Policy, please contact us at:</p>
-            <ul>
-                <li><strong>Email:</strong> [Insert Email]</li>
-                <li><strong>Phone:</strong> [Insert Phone Number]</li>
-                <li><strong>Mailing Address:</strong> [Insert Address]</li>
-            </ul>
-        </div>
+ <div class="container-fluid bg-light py-5">
+    <div class="container text-center">
+        <h1 class="fw-bold text-success mb-4">Privacy Policy</h1>
+        <p class="text-muted">Your privacy is important to us. This policy explains how we collect, use, and protect your personal information when you interact with Pedal Paradise.</p>
     </div>
+</div>
+
+<!-- Information Collection -->
+<div class="container py-5">
+    <h2 class="fw-bold text-dark mb-3">What Information We Collect</h2>
+    <p class="text-muted">When you shop, request repairs, or interact with our website, we may collect certain information to improve your experience.</p>
+
+    <ul class="list-group list-group-flush mt-3">
+        <li class="list-group-item">✓ Name, contact details, and shipping address</li>
+        <li class="list-group-item">✓ Payment information (securely processed through third-party providers)</li>
+        <li class="list-group-item">✓ Order history and repair service details</li>
+        <li class="list-group-item">✓ Cookies and website usage data for analytics</li>
+    </ul>
+</div>
+
+<!-- Use of Information -->
+<div class="container-fluid bg-success text-white py-5">
+    <div class="container">
+        <h2 class="fw-bold mb-4 text-center">How We Use Your Information</h2>
+        <p class="text-white text-center">We use collected data to enhance your experience, process transactions, and improve our services while keeping your information secure.</p>
+
+        <ul class="list-group list-group-flush mt-3">
+            <li class="list-group-item bg-light text-dark">✓ Processing orders and repair requests</li>
+            <li class="list-group-item bg-light text-dark">✓ Communicating updates about your purchases or services</li>
+            <li class="list-group-item bg-light text-dark">✓ Improving website functionality and user experience</li>
+            <li class="list-group-item bg-light text-dark">✓ Ensuring security and fraud prevention</li>
+        </ul>
+    </div>
+</div>
+
+<!-- Data Protection -->
+<div class="container py-5">
+    <h2 class="fw-bold text-dark mb-3">How We Protect Your Information</h2>
+    <p class="text-muted">Your security is our priority. We implement industry-standard measures to safeguard your personal data.</p>
+
+    <ul class="list-group list-group-flush mt-3">
+        <li class="list-group-item">✓ Secure encryption for transactions</li>
+        <li class="list-group-item">✓ Restricted access to sensitive data</li>
+        <li class="list-group-item">✓ Compliance with data protection laws</li>
+    </ul>
+</div>
+
+<!-- Your Rights & Contact -->
+<div class="container-fluid bg-light py-5">
+    <div class="container text-center">
+        <h2 class="fw-bold text-dark mb-4">Your Rights & Choices</h2>
+        <p class="text-muted">You have the right to access, modify, or request deletion of your personal data. If you have questions or concerns, contact us.</p>
+
+        <a asp-controller="Home" asp-action="Contact" class="btn btn-success btn-lg px-4">Contact Us</a>
+    </div>
+</div>

@@ -22,7 +22,7 @@ namespace PedalParadise.Controllers
         {
             return View("RegisterViewModel");
         }
-
+        [Route("/Register")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model)
@@ -65,7 +65,7 @@ namespace PedalParadise.Controllers
                 HttpContext.Session.SetString("UserName", $"{user.FirstName} {user.LastName}");
                 HttpContext.Session.SetString("UserType", user.UserType);
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Profile", "Account");
             }
 
             return View(model);
@@ -79,6 +79,7 @@ namespace PedalParadise.Controllers
         }
 
         // POST: /Account/Login
+        [Route("/Login")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model)
@@ -98,7 +99,7 @@ namespace PedalParadise.Controllers
                 HttpContext.Session.SetString("UserName", $"{user.FirstName} {user.LastName}");
                 HttpContext.Session.SetString("UserType", user.UserType);
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Profile", "Account");
             }
 
             return View(model);
@@ -161,6 +162,7 @@ namespace PedalParadise.Controllers
         }
 
         // POST: /Account/Edit
+        [Route("/Account/edit")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(EditProfileViewModel model)
