@@ -1,9 +1,49 @@
-﻿@{
+﻿@model PedalParadise.Models.Order
+
+@{
     ViewData["Title"] = "Order Confirmed";
 }
 
-<div class="container mt-5 text-center">
-    <h2 class="mb-4 text-success">Thank you for your order!</h2>
-    <p>Your order has been placed successfully.</p>
-    <a href="/" class="btn btn-primary mt-4">Back to Home</a>
+<div class="container mt-5">
+    <h2 class="mb-4 text-success text-center">Thank you for your purchase!</h2>
+
+    <div class="card p-4">
+        <h4>Order Details</h4>
+        <p><strong>Order ID:</strong> @Model.OrderID</p>
+        <p><strong>Date:</strong> @Model.Date.ToString("MM/dd/yyyy HH:mm")</p>
+        <p><strong>Status:</strong> @Model.Status</p>
+
+        <hr />
+
+        <h5>Items:</h5>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Price Each</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.OrderItems)
+                {
+                    <tr>
+                        <td>@item.Product!.Name</td>
+                        <td>@item.Quantity</td>
+                        <td>@item.Price.ToString("C")</td>
+                        <td>@((item.Price * item.Quantity).ToString("C"))</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <h5 class="text-end mt-4">
+            <strong>Total Amount:</strong> @Model.TotalAmount.ToString("C")
+        </h5>
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="/" class="btn btn-primary">Back to Home</a>
+    </div>
 </div>

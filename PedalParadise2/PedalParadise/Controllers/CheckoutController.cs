@@ -14,7 +14,7 @@ public class CheckoutController : Controller
 
     public async Task<IActionResult> Index()
     {
-        int clientId = 7;
+        int clientId = 11;
 
         var cart = await _context.ShoppingCarts
             .Include(c => c.CartItems)
@@ -50,7 +50,7 @@ public class CheckoutController : Controller
             return View("Index", viewModel);
         }
 
-        int clientId = 7;
+        int clientId = 11;
 
         var cart = await _context.ShoppingCarts
             .Include(c => c.CartItems)
@@ -97,9 +97,18 @@ public class CheckoutController : Controller
         return RedirectToAction("Success", new { orderId = newOrder.OrderID });
     }
 
-    public IActionResult Success(int orderId)
+    public async Task<IActionResult> Success(int orderId)
     {
-        ViewBag.OrderID = orderId;
-        return View();
+        var order = await _context.Orders
+            .Include(o => o.OrderItems)
+            .ThenInclude(oi => oi.Product)
+            .FirstOrDefaultAsync(o => o.OrderID == orderId);
+
+        if (order == null)
+        {
+            return NotFound();
+        }
+
+        return View(order);
     }
 }
