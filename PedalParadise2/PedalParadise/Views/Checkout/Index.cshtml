@@ -1,0 +1,96 @@
+﻿@model PedalParadise.Models.ViewModels.CheckoutViewModel
+
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<div class="container mt-5"> <!--Start of container div-->
+    <h2 class="mb-4">Checkout</h2>
+
+    <div class="card mb-4"> <!--Resumo do carrinho div-->
+        <div class="card-header"> <!--card-header div-->
+            <h4 class="mb-0">Order Summary</h4>
+        </div> <!--card-header div-->
+
+        <div class="card-body"> <!--card-body div-->
+            @if (Model.Cart != null && Model.Cart.CartItems.Any())
+            {
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th class="text-end">Price</th>
+                            <th class="text-end">Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Cart.CartItems)
+                        {
+                            <tr>
+                                <td>@item.Product!.Name</td>
+                                <td>@item.Quantity</td>
+                                <td class="text-end">@item.Product.Price.ToString("C")</td>
+                                <td class="text-end">@((item.Product.Price * item.Quantity).ToString("C"))</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <div class="d-flex justify-content-end">
+                    <h5>Total: <strong>@Model.TotalAmount.ToString("C")</strong></h5>
+                </div>
+
+            }
+            else
+            {
+                <p>Your cart is empty.</p>
+            }
+        </div> <!--card-body div-->
+    </div> <!--Resumo do carrinho div-->
+
+    <div class="card"> <!--Formulario de pagamento div-->
+        <div class="card-header"> <!--card-header div-->
+            <h4 class="mb-0">Payment Details</h4>
+        </div> <!--card-header div-->
+
+        <div class="card-body"> <!--card-body div-->
+            <form asp-action="Confirm" method="post">
+                <div class="mb-3"> <!--ShippingAddress div-->
+                    <label asp-for="ShippingAddress" class="form-label"></label>
+                    <input asp-for="ShippingAddress" class="form-control" />
+                    <span asp-validation-for="ShippingAddress" class="text-danger"></span>
+                </div> <!--ShippingAddress div-->
+
+                <div class="mb-3"> <!--CardNumber div-->
+                    <label asp-for="CardNumber" class="form-label"></label>
+                    <input asp-for="CardNumber" class="form-control" />
+                    <span asp-validation-for="CardNumber" class="text-danger"></span>
+                </div> <!--CardNumber div-->
+
+                <div class="mb-3"> <!--CardName div-->
+                    <label asp-for="CardName" class="form-label"></label>
+                    <input asp-for="CardName" class="form-control" />
+                    <span asp-validation-for="CardName" class="text-danger"></span>
+                </div> <!--CardName div-->
+
+                <div class="row"> <!--row div-->
+                    <div class="col-md-6 mb-3"> <!--CardExpiry div-->
+                        <label asp-for="CardExpiry" class="form-label"></label>
+                        <input asp-for="CardExpiry" class="form-control" />
+                        <span asp-validation-for="CardExpiry" class="text-danger"></span>
+                    </div> <!--CardExpiry div-->
+
+                    <div class="col-md-6 mb-3"> <!--CardCVV div-->
+                        <label asp-for="CardCVV" class="form-label"></label>
+                        <input asp-for="CardCVV" class="form-control" />
+                        <span asp-validation-for="CardCVV" class="text-danger"></span>
+                    </div> <!--CardCVV div-->
+                </div> <!--row div-->
+
+                <button typeof="submit" class="btn btn-primary w-100 mt-3">Place Order</button>
+            </form>
+        </div> <!--card-body div-->
+    </div> <!--Formulario de pagamento div-->
+</div> <!--End of container div-->
+

@@ -4,6 +4,8 @@
     decimal totalPrice = Model.Sum(item => item.TotalPrice);
 }
 
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
 <div class="mb-8">
     <h1 class="text-center mb-6">Shopping Cart</h1>
 
@@ -71,7 +73,7 @@
             <a asp-controller="Products" asp-action="Index" class="btn btn-lg btn-outline-primary">
                 Continue Shopping
             </a>
-            <a asp-controller="Orders" asp-action="Checkout" class="btn btn-lg btn-outline-primary">
+            <a asp-controller="Checkout" asp-action="Index" class="btn btn-lg btn-outline-primary">
                 Proceed to Checkout
             </a>
         </div>
