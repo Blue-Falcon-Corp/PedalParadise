@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using PedalParadise.Models.ViewModels;
 using PedalParadise.Models;
 using PedalParadise.Data;
+using System.Text.Json;
 
 namespace PedalParadise.Controllers;
 
@@ -22,6 +23,34 @@ public class CheckoutController : Controller
         }
 
         var cart = await _context.ShoppingCarts
+            .Include(c => c.CartItems)
+            .ThenInclude(ci => ci.Product)
+            .FirstOrDefaultAsync(c => c.ClientID == clientId.Value);
+
+        if (cart == null)
+        {
+            return RedirectToAction("EmptyCart");
+        }
+
+        var sessionCartJson = HttpContext.Session.GetString("Cart");
+        var cartItemsFromSession = string.IsNullOrEmpty(sessionCartJson) ? new List<CartItem>() : JsonSerializer.Deserialize<List<CartItem>>(sessionCartJson);
+
+        foreach (var item in cartItemsFromSession)
+        {
+            if (!cart.CartItems.Any(ci => ci.ProductID == item.ProductID))
+            {
+                _context.CartItems.Add(new CartItem
+                {
+                    CartID = cart.CartID,
+                    ProductID = item.ProductID,
+                    Quantity = item.Quantity,
+                });
+            }
+        }
+
+        await _context.SaveChangesAsync();
+
+        cart = await _context.ShoppingCarts
             .Include(c => c.CartItems)
             .ThenInclude(ci => ci.Product)
             .FirstOrDefaultAsync(c => c.ClientID == clientId.Value);

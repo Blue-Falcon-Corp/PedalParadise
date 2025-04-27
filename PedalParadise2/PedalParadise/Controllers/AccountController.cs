@@ -1,6 +1,7 @@
 ﻿// Controllers/AccountController.cs
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using PedalParadise.Models;
 using PedalParadise.Services;
 using PedalParadise.Data;
