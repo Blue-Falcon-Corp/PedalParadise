@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PedalParadise.Models;
 using PedalParadise.Services;
+using PedalParadise.Data;
 using PedalParadise.Models.ViewModels;
 
 namespace PedalParadise.Controllers
@@ -10,10 +11,12 @@ namespace PedalParadise.Controllers
     public class AccountController : Controller
     {
         private readonly IUserService _userService;
+        private readonly PedalParadiseContext _context;
 
-        public AccountController(IUserService userService)
+        public AccountController(IUserService userService, PedalParadiseContext context)
         {
             _userService = userService;
+            _context = context;
         }
 
         // GET: /Account/Register
@@ -98,6 +101,24 @@ namespace PedalParadise.Controllers
                 HttpContext.Session.SetInt32("UserId", user.UserID);
                 HttpContext.Session.SetString("UserName", $"{user.FirstName} {user.LastName}");
                 HttpContext.Session.SetString("UserType", user.UserType);
+
+                // create cart dynamically
+                if (user.UserType == "Client")
+                {
+                    var existingCart = await _context.ShoppingCarts.FirstOrDefaultAsync(c => c.ClientID == user.UserID);
+
+                    if (existingCart == null)
+                    {
+                        var newCart = new ShoppingCart
+                        {
+                            ClientID = user.UserID,
+                            DateCreated = DateTime.Now,
+                        };
+
+                        _context.ShoppingCarts.Add(newCart);
+                        await _context.SaveChangesAsync();
+                    }
+                }
 
                 return RedirectToAction("Profile", "Account");
             }

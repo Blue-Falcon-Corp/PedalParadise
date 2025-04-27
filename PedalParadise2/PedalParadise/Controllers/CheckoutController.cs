@@ -14,12 +14,17 @@ public class CheckoutController : Controller
 
     public async Task<IActionResult> Index()
     {
-        int clientId = 11;
+        //int clientId = 11;
+        var clientId = HttpContext.Session.GetInt32("UserId");
+        if (clientId == null)
+        {
+            return RedirectToAction("Login", "Account");
+        }
 
         var cart = await _context.ShoppingCarts
             .Include(c => c.CartItems)
             .ThenInclude(ci => ci.Product)
-            .FirstOrDefaultAsync(c => c.ClientID == clientId);
+            .FirstOrDefaultAsync(c => c.ClientID == clientId.Value);
 
         if (cart == null || !cart.CartItems.Any())
         {
@@ -28,7 +33,7 @@ public class CheckoutController : Controller
 
         decimal total = cart.CartItems.Sum(item => item.Product!.Price * item.Quantity);
 
-        var paymentMethods = await _context.PaymentMethods.ToListAsync();
+        //var paymentMethods = await _context.PaymentMethods.ToListAsync();
 
         var viewModel = new CheckoutViewModel
         {
@@ -45,17 +50,24 @@ public class CheckoutController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Confirm(CheckoutViewModel viewModel)
     {
+        var clientId = HttpContext.Session.GetInt32("UserId");
+
+        if (clientId == null)
+        {
+            return RedirectToAction("login", "Account");
+        }
+
         if (!ModelState.IsValid)
         {
             return View("Index", viewModel);
         }
 
-        int clientId = 11;
+        //int clientId = 11;
 
         var cart = await _context.ShoppingCarts
             .Include(c => c.CartItems)
             .ThenInclude(ci => ci.Product)
-            .FirstOrDefaultAsync(c => c.ClientID == clientId);
+            .FirstOrDefaultAsync(c => c.ClientID == clientId.Value);
 
         if (cart == null || !cart.CartItems.Any())
         {
@@ -67,7 +79,7 @@ public class CheckoutController : Controller
         var newOrder = new Order
         {
             Date = DateTime.Now,
-            ClientID = clientId,
+            ClientID = clientId.Value,
             TotalAmount = totalAmount,
             Status = "Processing",
             PaymentID = null
