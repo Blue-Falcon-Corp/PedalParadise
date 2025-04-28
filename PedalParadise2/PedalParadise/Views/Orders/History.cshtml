@@ -46,7 +46,7 @@
                                     <td>@order.TotalAmount.ToString("F2")</td>
                                     <td>@order.Status</td>
                                     <td>
-                                        <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#orderModal"
+                                        <button type="button" class="btn btn-sm btn-outline-primary me-1" data-bs-toggle="modal" data-bs-target="#orderModal"
                                             data-orderid="@order.OrderID" data-date="@order.Date.ToString("yyyy-MM-dd")"
                                             data-clientid="@order.ClientID" data-total="@order.TotalAmount.ToString("F2")"
                                             data-paymentid="@order.PaymentID" data-status="@order.Status">
