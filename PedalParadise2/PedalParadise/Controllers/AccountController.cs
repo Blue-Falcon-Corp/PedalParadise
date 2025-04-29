@@ -192,6 +192,21 @@ namespace PedalParadise.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(ProfileViewModel model)
         {
+           // Get all model properties with values(filter out null ones)
+            var providedProperties = typeof(ProfileViewModel).GetProperties()
+                .Where(p => p.GetValue(model) != null)
+                .Select(p => p.Name)
+                .ToList();
+
+            // Remove validation for properties not in the request
+            foreach (var property in ModelState.Keys.ToList())
+            {
+                if (!providedProperties.Contains(property))
+                {
+                    ModelState.Remove(property);
+                }
+            }
+
             if (!ModelState.IsValid) return View(model);
 
             // Retrieve the user based on UserID passed from the form
@@ -205,22 +220,33 @@ namespace PedalParadise.Controllers
             user.Address = model.User.Address;
             user.Email = model.User.Email;
 
-            // If user is a Client, update Membership information
-            if (user is Client client)
-            {
-                client.Membership = model.Client.Membership;
-            }
-            // If user is an Employee, update Manager ID (if editable)
-            else if (user is Employee employee)
-            {
-                employee.Manager = model.Employee?.Manager ?? employee.Manager;
-            }
-
             // Save changes
             await _userService.UpdateUserAsync(user);
 
             // Redirect back to the profile page after successful update
             return RedirectToAction("Profile");
+        }
+        //GET: all accounts
+        [Route("/Accounts/List")]
+        public async Task<IActionResult> List()
+        {
+            var userId = HttpContext.Session.GetInt32("UserId");
+            var user = await _userService.GetUserByIdAsync(userId.Value);
+
+            var profileModel = new ProfileViewModel { User = user };
+            var gente = await _userService.GetAllUsersAsync();//all accounts
+            
+            var employees = gente.OfType<Employee>().ToList();//employees
+            var clients = gente.OfType<Client>().ToList();//clients
+
+            var viewModel = new AccountPageViewModel
+            {
+                Profile = profileModel,
+                Clients = clients,
+                Employees = employees
+            };
+
+            return View(viewModel);
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿@model PedalParadise.Models.ViewModels.ProfileViewModel
 
-<div class="container d-flex justify-content-center">
-    <div class="row w-90 mt-4">       
+<div class="container-fluid d-flex justify-content-start">
+    <div class="row w-75 mt-4">       
 
         <!-- Side Navigation -->
         <div class="col-md-4">
@@ -12,41 +12,39 @@
         </div>
 
         <!-- Profile Information -->
-        <div class="col-md-8">
+        <div class="col-md-8 container">
             <div class="card shadow-lg p-4">
-                @if (Model?.User?.Discriminator == "Client")
-                {
-                    <h1 class="h3 fw-bold text-dark mb-4">Profile Information</h1>
-
-                    <div class="mb-3">
-                        <label class="form-label">Name:</label>
-                        <p class="fw-bold">@Model.User.FirstName @Model.User.LastName</p>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Email:</label>
-                        <p>@Model.User.Email</p>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Phone:</label>
-                        <p>@Model.User.Phone</p>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Address:</label>
-                        <p>@Model.User.Address</p>
-                    </div>
-                }
                 <!--if client, show membership-->
                     @if(Model.Client != null)
                     {
+                        <h1 class="h3 fw-bold text-dark mb-4">Profile Information</h1>
+
                         <div class="mb-3"> 
                             <label class="form-label">Membership Type: </label>
                             <p>@Model.Client.Membership</p>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Name:</label>
+                            <p class="fw-bold">@Model.User.FirstName @Model.User.LastName</p>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email:</label>
+                            <p>@Model.User.Email</p>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Phone:</label>
+                            <p>@Model.User.Phone</p>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Address:</label>
+                            <p>@Model.User.Address</p>
                         </div>
                     }
 
                     <!--if employee, show manager info-->
                     @if(Model.Employee != null)
                     {
+                        <h1 class="h3 fw-bold text-dark mb-4">Employee Information</h1>
                         <div class="mb-3">
                             <label class="form-label">Employee ID:</label>
                             <p>@Model.Employee.UserID</p>
@@ -60,6 +58,25 @@
                         <div class="mb-3">
                             <label class="form-label">Manager Name:</label>
                             <p>@(Model.Employee.ManagerNavigation?.FirstName ?? "We're working on it")</p>
+                        </div>
+                       
+                        <h1 class="h3 fw-bold text-dark mb-4">Profile Information</h1>
+
+                        <div class="mb-3">
+                            <label class="form-label">Name:</label>
+                            <p class="fw-bold">@Model.User.FirstName @Model.User.LastName</p>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email:</label>
+                            <p>@Model.User.Email</p>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Phone:</label>
+                            <p>@Model.User.Phone</p>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Address:</label>
+                            <p>@Model.User.Address</p>
                         </div>
                     }
                     <!--Edit profile button-->

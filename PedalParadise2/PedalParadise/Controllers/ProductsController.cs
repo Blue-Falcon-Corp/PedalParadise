@@ -1,19 +1,21 @@
 ﻿// Controllers/ProductsController.cs
 using Microsoft.AspNetCore.Mvc;
 using PedalParadise.Models;
+using PedalParadise.Models.ViewModels;
 using PedalParadise.Services;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace PedalParadise.Controllers
 {
     public class ProductsController : Controller
     {
         private readonly IProductService _productService;
+        private readonly IUserService _userService;
 
-        public ProductsController(IProductService productService)
+        public ProductsController(IProductService productService, IUserService userService)
         {
             _productService = productService;
+            _userService = userService;
         }
 
         // GET: /Products
@@ -180,6 +182,25 @@ namespace PedalParadise.Controllers
             await _productService.DeleteProductAsync(id);
             return RedirectToAction(nameof(Index));
         }
+
+        // GET: List all products
+        public async Task<IActionResult> List()
+        {
+            var userId = HttpContext.Session.GetInt32("UserId");
+            var user = await _userService.GetUserByIdAsync(userId.Value);
+
+            var profileModel = new ProfileViewModel { User = user };
+            var products = await _productService.GetAllProductsAsync();
+
+            var viewModel = new ProductsPageViewModel
+            {
+                Profile = profileModel,
+                Products = (List<Product>)products
+            };
+
+            return View(viewModel);
+        }
+
     }
 
 }

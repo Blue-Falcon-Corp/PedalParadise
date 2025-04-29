@@ -1,0 +1,74 @@
+﻿@using PedalParadise.Models.ViewModels
+@model ProductsPageViewModel
+
+<div class="container-fluid d-flex justify-content-start">
+    <div class="row w-75 mt-4">       
+
+        <!-- Side Navigation -->
+        <div class="col-md-4">
+            @if (Model?.Profile != null)
+            {
+                @await Html.PartialAsync("_dashboardPartial", Model.Profile.User)
+            }
+        </div>
+
+        <div class="col-md-8 container">
+            <div class="card shadow-lg p-4">
+                <h2 class="fw-bold text-center mb-4">Product List</h2>
+
+                <!-- Category Filter -->
+                <div class="mb-3">
+                    <label for="categoryFilter">Filter by Category:</label>
+                    <select id="categoryFilter" class="form-select">
+                        <option value="">All Categories</option>
+                        <option value="Road">Road</option>
+                        <option value="Mountain">Mountain</option>
+                        <option value="Electric">Electric</option>
+                        <option value="Hybrid">Hybrid</option>
+                        <option value="Accessories">Accessories</option>
+                        <option value="Apparel">Apparel</option>
+                    </select>
+                </div>
+
+                <!-- Product Table -->
+                <table class="table table-bordered">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productTable">
+                        @foreach (var product in Model.Products)
+                        {
+                            <tr data-category="@product.Category">
+                                <td>@product.Name</td>
+                                <td>@product.Category</td>
+                                <td>$@product.Price</td>
+                                <td>@product.Stock</td>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@product.ProductID" class="btn btn-warning btn-sm">Edit</a>
+                                    <a asp-action="Delete" asp-route-id="@product.ProductID" class="btn btn-danger btn-sm">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Filter Functionality -->
+<script>
+    document.getElementById("categoryFilter").addEventListener("change", function () {
+        var selectedCategory = this.value.toLowerCase();
+        document.querySelectorAll("#productTable tr").forEach(row => {
+            var category = row.getAttribute("data-category").toLowerCase();
+            row.style.display = selectedCategory === "" || category === selectedCategory ? "" : "none";
+        });
+    });
+</script>

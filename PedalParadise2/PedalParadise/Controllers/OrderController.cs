@@ -207,5 +207,23 @@ namespace PedalParadise.Controllers
 
             return RedirectToAction(nameof(History));
         }
+        //GET: Orders list
+        [Route("/Order/OrdersList")]
+        public async Task<IActionResult> OrdersList()
+        {
+            var userId = HttpContext.Session.GetInt32("UserId");
+            var user = await _userService.GetUserByIdAsync(userId.Value);
+
+            var profileModel = new ProfileViewModel { User = user };
+            var orders = await _orderService.GetAllOrdersAsync();
+
+            var viewModel = new OrderPageViewModel
+            {
+                Profile = profileModel,
+                Orders = (List<Order>)orders
+            };
+
+            return View(viewModel);
+        }
     }
 }

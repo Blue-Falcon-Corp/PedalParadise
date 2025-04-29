@@ -1,0 +1,92 @@
+﻿@using PedalParadise.Models.ViewModels
+@model RequestPageViewModel
+
+<div class="container-fluid d-flex justify-content-start">
+    <div class="row w-75 mt-4">       
+
+        <!-- Side Navigation -->
+        <div class="col-md-4">
+            @if (Model?.Profile != null)
+            {
+                @await Html.PartialAsync("_dashboardPartial", Model.Profile.User)
+            }
+        </div>
+
+        <div class="col-md-8 container">
+            <div class="card shadow-lg p-4">
+                <h2 class="fw-bold text-center mb-4">Request Management</h2>
+
+                <!-- Tabs Navigation -->
+                <ul class="nav nav-tabs" id="requestTabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="repairs-tab" data-bs-toggle="tab" href="#repairs">Repair Requests</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="refunds-tab" data-bs-toggle="tab" href="#refunds">Refund Requests</a>
+                    </li>
+                </ul>
+
+                <!-- Tabs Content -->
+                <div class="tab-content mt-4">
+                    <!-- Repair Requests Tab -->
+                    <div class="tab-pane fade show active" id="repairs">
+                        <h3 class="fw-bold">Repair Requests</h3>
+                        <table class="table table-bordered">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Request ID</th>
+                                    <th>Client Name</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var request in Model.RepairRequests)
+                                {
+                                    <tr>
+                                        <td>@request.RepairID</td>
+                                        <!--td>@*request.Client.FirstName @request.Client.LastName*@/</td-->
+                                        <td>@request.Status</td>
+                                        <td>
+                                            <a asp-action="EditRepairRequest" asp-route-id="@request.RepairID" class="btn btn-warning btn-sm">Edit</a>
+                                            <a asp-action="DeleteRepairRequest" asp-route-id="@request.RepairID" class="btn btn-danger btn-sm">Delete</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Refund Requests Tab -->
+                    <div class="tab-pane fade" id="refunds">
+                        <h3 class="fw-bold">Refund Requests</h3>
+                        <table class="table table-bordered">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Request ID</th>
+                                    <th>Client Name</th>
+                                    <th>Reason</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var request in Model.RefundRequests)
+                                {
+                                    <tr>
+                                        <td>@request.RefundID</td>
+                                        @*<td>@request.Order.Client.FirstName @request.Order.Client.LastName</td>*@
+                                        <td>@request.Reason</td>
+                                        <td>
+                                            <a asp-action="ApproveRefund" asp-route-id="@request.RefundID" class="btn btn-success btn-sm">Approve</a>
+                                            <a asp-action="RejectRefund" asp-route-id="@request.RefundID" class="btn btn-danger btn-sm">Reject</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

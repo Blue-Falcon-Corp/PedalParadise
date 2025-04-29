@@ -1,0 +1,48 @@
+﻿@using PedalParadise.Models.ViewModels
+@model OrderPageViewModel
+
+<div class="container-fluid d-flex justify-content-start">
+    <div class="row w-75 mt-4"> 
+        <!-- Sidebar Navigation -->
+        <div class="col-md-4">
+            @if (Model.Profile != null)
+            {
+                @await Html.PartialAsync("_dashboardPartial", Model.Profile.User)
+            }
+        </div>
+
+        <!-- Order Management -->
+        <div class="col-md-8">
+            <div class="card shadow-lg ms-4 p-2">
+                <h2 class="fw-bold text-center mb-4">Orders</h2>
+
+                <table class="table table-bordered">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Client Name</th>
+                            <th>Total Amount</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var order in Model.Orders)
+                        {
+                            <tr>
+                                <td>@order.OrderID</td>
+                                <td>@order.Client.FirstName @order.Client.LastName</td>
+                                <td>$@order.TotalAmount</td>
+                                <td>@order.Status</td>
+                                <td>
+                                    <a asp-action="ViewOrder" asp-route-id="@order.OrderID" class="btn btn-info btn-sm">Details</a>
+                                    <a asp-action="DeleteOrder" asp-route-id="@order.OrderID" class="btn btn-danger btn-sm">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+             </div>
+        </div>
+    </div>
+</div>

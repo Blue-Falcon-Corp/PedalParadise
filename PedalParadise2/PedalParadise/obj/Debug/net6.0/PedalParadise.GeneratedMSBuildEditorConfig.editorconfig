@@ -19,6 +19,10 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/n01611365/Desktop/PedalParadise/PedalParadise2/PedalParadise/Views/Account/List.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/n01611365/Desktop/PedalParadise/PedalParadise2/PedalParadise/Views/Account/LoginViewModel.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpblZpZXdNb2RlbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -107,12 +111,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJzXEhpc3RvcnkuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/n01611365/Desktop/PedalParadise/PedalParadise2/PedalParadise/Views/Orders/OrdersList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJzXE9yZGVyc0xpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/n01611365/Desktop/PedalParadise/PedalParadise2/PedalParadise/Views/Products/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/n01611365/Desktop/PedalParadise/PedalParadise2/PedalParadise/Views/Products/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/n01611365/Desktop/PedalParadise/PedalParadise2/PedalParadise/Views/Products/List.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcTGlzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/n01611365/Desktop/PedalParadise/PedalParadise2/PedalParadise/Views/Register/Index.cshtml]
@@ -125,6 +137,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/n01611365/Desktop/PedalParadise/PedalParadise2/PedalParadise/Views/Repairs/RepairService.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVwYWlyc1xSZXBhaXJTZXJ2aWNlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/n01611365/Desktop/PedalParadise/PedalParadise2/PedalParadise/Views/Request/List.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVxdWVzdFxMaXN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/n01611365/Desktop/PedalParadise/PedalParadise2/PedalParadise/Views/Shared/Dashboard.cshtml]

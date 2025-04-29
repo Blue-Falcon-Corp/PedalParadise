@@ -1,0 +1,96 @@
+﻿@using PedalParadise.Models.ViewModels
+@model AccountPageViewModel
+
+<div class="container-fluid d-flex justify-content-start">
+    <div class="row w-75 mt-4"> 
+        <!-- Sidebar Navigation -->
+        <div class="col-md-4">
+            @if (Model.Profile != null)
+            {
+                @await Html.PartialAsync("_dashboardPartial", Model.Profile.User)
+            }
+        </div>
+
+        <!-- Account Management -->
+        <div class="col-md-8">
+            <div class="card shadow-lg p-4">
+                <h2 class="fw-bold text-center mb-4">Account Management</h2>
+
+                <!-- Tabs Navigation -->
+                <ul class="nav nav-tabs" id="accountTabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="clients-tab" data-bs-toggle="tab" href="#clients">Clients</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="employees-tab" data-bs-toggle="tab" href="#employees">Employees</a>
+                    </li>
+                </ul>
+
+                <!-- Tabs Content -->
+                <div class="tab-content mt-4">
+                    <!-- Clients Tab -->
+                    <div class="tab-pane fade show active" id="clients">
+                        <h3 class="fw-bold">Clients</h3>
+                        <table class="table table-bordered">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Client ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Membership</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var client in Model.Clients)
+                                {
+                                    <tr>
+                                        <td>@client.UserID</td>
+                                        <td>@client.FirstName @client.LastName</td>
+                                        <td>@client.Email</td>
+                                        <td>@client.Membership</td>
+                                        <td>
+                                            <a asp-action="EditClient" asp-route-id="@client.UserID" class="btn btn-warning btn-sm">Edit</a>
+                                            <a asp-action="DeleteClient" asp-route-id="@client.UserID" class="btn btn-danger btn-sm">Delete</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Employees Tab -->
+                    <div class="tab-pane fade" id="employees">
+                        <h3 class="fw-bold">Employees</h3>
+                        <table class="table table-bordered">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Employee ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Manager</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var employee in Model.Employees)
+                                {
+                                    <tr>
+                                        <td>@employee.UserID</td>
+                                        <td>@employee.FirstName @employee.LastName</td>
+                                        <td>@employee.Email</td>
+                                        <td>@(employee.ManagerNavigation?.FirstName ?? "Unknown")</td>
+                                        <td>
+                                            <a asp-action="EditEmployee" asp-route-id="@employee.UserID" class="btn btn-warning btn-sm">Edit</a>
+                                            <a asp-action="DeleteEmployee" asp-route-id="@employee.UserID" class="btn btn-danger btn-sm">Delete</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
