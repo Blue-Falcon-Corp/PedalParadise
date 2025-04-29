@@ -30,12 +30,30 @@
                         <li class="nav-item">
                             <a class="nav-link text-success fw-semibold" asp-area="" asp-controller="Products" asp-action="Index">Shop</a>
                         </li>
+
                         <li class="nav-item">
                             <a class="nav-link text-success fw-semibold" asp-area="" asp-controller="Home" asp-action="About">About Us</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-success fw-semibold" asp-area="" asp-controller="Cart" asp-action="Index">Cart</a>
+
+                        <li class="nav-item position-relative">
+                            <a class="nav-link text-success fw-semibold position-relative" asp-area="" asp-controller="Cart" asp-action="Index">
+                                Cart
+                                @if (Context.Session.GetString("Cart") != null)
+                                {
+                                    var cartItems = System.Text.Json.JsonSerializer.Deserialize<List<PedalParadise.Models.CartItem>>(Context.Session.GetString("Cart"));
+                                    if (cartItems != null && cartItems.Count > 0)
+                                    {
+                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger ms-2 pulse">
+                                            @cartItems.Sum(c => c.Quantity)
+                                            <span class="visually-hidden">items in cart</span>
+                                        </span>
+
+                                    }
+                                }
+                            </a>
                         </li>
+
+                        
                         <li class="nav-item">
                             <a class="nav-link text-success fw-semibold" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>

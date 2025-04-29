@@ -135,6 +135,8 @@ public class CheckoutController : Controller
 
         await _context.SaveChangesAsync();
 
+        HttpContext.Session.Remove("cart");
+
         return RedirectToAction("Success", new { orderId = newOrder.OrderID });
     }
 
