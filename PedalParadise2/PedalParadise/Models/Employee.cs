@@ -2,9 +2,9 @@
 using System.ComponentModel.DataAnnotations.Schema;
 namespace PedalParadise.Models
 {
-    public class Employee
+    public class Employee : User
     {
-        [Key]
+        
         [ForeignKey("User")]
         public int EmployeeID { get; set; }
         [Column(TypeName = "decimal(10, 2)")]
@@ -12,8 +12,12 @@ namespace PedalParadise.Models
         public int? Manager { get; set; }
         // Navigation properties
         public virtual User? User { get; set; }
+        
+        [ForeignKey("ManagerID")]
         public virtual Employee? ManagerNavigation { get; set; }
         public virtual ICollection<Employee> ManagedEmployees { get; set; } = new List<Employee>();
         public virtual ICollection<RepairRequest> AssignedRepairs { get; set; } = new List<RepairRequest>();
     }
 }
+
+

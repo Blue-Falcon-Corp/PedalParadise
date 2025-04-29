@@ -1,0 +1,29 @@
+﻿@model PedalParadise.Models.ViewModels.ProfileViewModel
+
+<h1>Edit Profile</h1>
+<form asp-action="Edit" asp-controller="Account" method="post">
+    <input type="hidden" asp-for="@Model.User.UserID" />
+
+    <label asp-for="@Model.User.FirstName">First Name:</label>
+    <input asp-for="@Model.User.FirstName" class="form-control" />
+
+    <label asp-for="@Model.User.LastName">Last Name:</label>
+    <input asp-for="@Model.User.LastName" class="form-control" />
+
+    <label asp-for="@Model.User.Email">Email:</label>
+    <input asp-for="@Model.User.Email" class="form-control" />
+
+    <label asp-for="@Model.User.Phone">Phone:</label>
+    <input asp-for="@Model.User.Phone" class="form-control" />
+
+    <label asp-for="@Model.User.Address">Address:</label>
+    <textarea asp-for="@Model.User.Address" class="form-control"></textarea>
+
+    @if (Model.Client != null)
+    {
+        <label asp-for="@Model.Client.Membership">Membership Type:</label>
+        <input asp-for="@Model.Client.Membership" class="form-control" readonly/>
+    }
+
+    <button type="submit" class="btn btn-success mt-4">Save Changes</button>
+</form>

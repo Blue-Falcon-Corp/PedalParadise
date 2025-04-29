@@ -13,11 +13,13 @@ namespace PedalParadise.Controllers
     {
         private readonly IUserService _userService;
         private readonly PedalParadiseContext _context;
+        private readonly IOrderService _orderService;
 
-        public AccountController(IUserService userService, PedalParadiseContext context)
+        public AccountController(IUserService userService, PedalParadiseContext context, IOrderService orderService)
         {
             _userService = userService;
             _context = context;
+            _orderService = orderService;
         }
 
         // GET: /Account/Register
@@ -47,7 +49,7 @@ namespace PedalParadise.Controllers
                     Email = model.Email,
                     Phone = model.Phone,
                     Address = model.Address,
-                    UserType = "Client",
+                    Discriminator = "Client",
                     Password = model.Password // Ensure password is set
                 };
 
@@ -57,7 +59,6 @@ namespace PedalParadise.Controllers
                 // Create the client
                 var client = new Client
                 {
-                    ClientID = user.UserID,
                     Membership = "Standard"
                 };
 
@@ -67,7 +68,7 @@ namespace PedalParadise.Controllers
                 // Set session
                 HttpContext.Session.SetInt32("UserId", user.UserID);
                 HttpContext.Session.SetString("UserName", $"{user.FirstName} {user.LastName}");
-                HttpContext.Session.SetString("UserType", user.UserType);
+                HttpContext.Session.SetString("UserType", user.Discriminator);
 
                 return RedirectToAction("Profile", "Account");
             }
@@ -101,18 +102,18 @@ namespace PedalParadise.Controllers
                 // Set session
                 HttpContext.Session.SetInt32("UserId", user.UserID);
                 HttpContext.Session.SetString("UserName", $"{user.FirstName} {user.LastName}");
-                HttpContext.Session.SetString("UserType", user.UserType);
+                HttpContext.Session.SetString("UserType", user.Discriminator);
 
                 // create cart dynamically
-                if (user.UserType == "Client")
+                if (user.Discriminator == "Client") //use discriminator instead of usertype
                 {
-                    var existingCart = await _context.ShoppingCarts.FirstOrDefaultAsync(c => c.ClientID == user.UserID);
+                    var existingCart = await _context.ShoppingCarts.FirstOrDefaultAsync(c => c.UserID == user.UserID);
 
                     if (existingCart == null)
                     {
                         var newCart = new ShoppingCart
                         {
-                            ClientID = user.UserID,
+                            UserID = user.UserID,
                             DateCreated = DateTime.Now,
                         };
 
@@ -120,7 +121,6 @@ namespace PedalParadise.Controllers
                         await _context.SaveChangesAsync();
                     }
                 }
-
                 return RedirectToAction("Profile", "Account");
             }
 
@@ -146,12 +146,19 @@ namespace PedalParadise.Controllers
             }
 
             var user = await _userService.GetUserByIdAsync(userId.Value);
+            var orders = await _orderService.GetOrdersByClientIdAsync(userId.Value);
+
             if (user == null)
             {
-                return NotFound();
+                HttpContext.Session.Clear();
+                return RedirectToAction("Login");
             }
-
-            return View(user);
+            var viewModel = new ProfileViewModel
+            {
+                User = user,
+                Orders = (List<Order>)orders
+            };
+            return View(viewModel);
         }
 
         // GET: /Account/Edit
@@ -169,54 +176,51 @@ namespace PedalParadise.Controllers
             {
                 return NotFound();
             }
-
-            var model = new EditProfileViewModel
+            
+            var model = new ProfileViewModel
             {
-                UserID = user.UserID,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                Email = user.Email,
-                Phone = user.Phone,
-                Address = user.Address
+                User = user, // Directly assign User object to enable access to inherited properties
+                Orders = (List<Order>)await _orderService.GetOrdersByClientIdAsync(userId.Value)
             };
+
 
             return View(model);
         }
 
-        // POST: /Account/Edit
         [Route("/Account/edit")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(EditProfileViewModel model)
+        public async Task<IActionResult> Edit(ProfileViewModel model)
         {
-            var userId = HttpContext.Session.GetInt32("UserId");
-            if (userId == null || userId != model.UserID)
+            if (!ModelState.IsValid) return View(model);
+
+            // Retrieve the user based on UserID passed from the form
+            var user = await _userService.GetUserByIdAsync(model.User.UserID);
+            if (user == null) return NotFound();
+
+            // Update common fields
+            user.FirstName = model.User.FirstName;
+            user.LastName = model.User.LastName;
+            user.Phone = model.User.Phone;
+            user.Address = model.User.Address;
+            user.Email = model.User.Email;
+
+            // If user is a Client, update Membership information
+            if (user is Client client)
             {
-                return RedirectToAction("Login");
+                client.Membership = model.Client.Membership;
+            }
+            // If user is an Employee, update Manager ID (if editable)
+            else if (user is Employee employee)
+            {
+                employee.Manager = model.Employee?.Manager ?? employee.Manager;
             }
 
-            if (ModelState.IsValid)
-            {
-                var user = await _userService.GetUserByIdAsync(model.UserID);
-                if (user == null)
-                {
-                    return NotFound();
-                }
+            // Save changes
+            await _userService.UpdateUserAsync(user);
 
-                user.FirstName = model.FirstName;
-                user.LastName = model.LastName;
-                user.Phone = model.Phone;
-                user.Address = model.Address;
-
-                await _userService.UpdateUserAsync(user);
-
-                // Update session
-                HttpContext.Session.SetString("UserName", $"{user.FirstName} {user.LastName}");
-
-                return RedirectToAction(nameof(Profile));
-            }
-
-            return View(model);
+            // Redirect back to the profile page after successful update
+            return RedirectToAction("Profile");
         }
     }
 }

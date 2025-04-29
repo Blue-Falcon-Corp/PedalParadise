@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PedalParadise.Data;
 
@@ -11,9 +12,10 @@ using PedalParadise.Data;
 namespace PedalParadise.Migrations
 {
     [DbContext(typeof(PedalParadiseContext))]
-    partial class PedalParadiseContextModelSnapshot : ModelSnapshot
+    [Migration("20250428174141_3rd")]
+    partial class _3rd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -1,0 +1,75 @@
+﻿@model User
+
+@if (Model.Discriminator == "Employee")
+{
+    <!-- Full Admin Dashboard for Employees -->
+    <div class="card shadow-lg">
+        <div class="card-body">
+            <h5 class="fw-bold text-dark">Admin Dashboard</h5>
+            <hr />
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a asp-action="Orders" asp-controller="Admin" class="nav-link text-dark">
+                        <i class="bi bi-box-seam"></i> Orders
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a asp-action="Accounts" asp-controller="Admin" class="nav-link text-dark">
+                        <i class="bi bi-people"></i> Accounts
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a asp-action="Requests" asp-controller="Admin" class="nav-link text-dark">
+                        <i class="bi bi-list-check"></i> Requests
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a asp-action="Products" asp-controller="Admin" class="nav-link text-dark">
+                        <i class="bi bi-bicycle"></i> Products
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--Include orders and account info fro employees too-->
+    <div class="card shadow-lg">
+        <div class="card-body">
+            <h5 class="fw-bold text-dark">Account Overview</h5>
+            <hr />
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a asp-action="Profile" asp-controller="Account" class="nav-link text-dark">
+                        <i class="bi bi-person"></i> Account Information
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a asp-action="History" asp-controller="Order" class="nav-link text-dark">
+                        <i class="bi bi-clock-history"></i> Order History
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+}
+else if (Model.Discriminator == "Client")
+{
+    <!-- Simplified Dashboard for Clients -->
+    <div class="card shadow-lg">
+        <div class="card-body">
+            <h5 class="fw-bold text-dark">Account Overview</h5>
+            <hr />
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a asp-action="Profile" asp-controller="Account" class="nav-link text-dark">
+                        <i class="bi bi-person"></i> Account Information
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a asp-action="History" asp-controller="Order" class="nav-link text-dark">
+                        <i class="bi bi-clock-history"></i> Order History
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+}

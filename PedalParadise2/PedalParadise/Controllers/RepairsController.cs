@@ -63,7 +63,7 @@ namespace PedalParadise.Controllers
             }
 
             // Access control
-            if (userType != "Employee" && repair.ClientID != userId)
+            if (userType != "Employee" && repair.UserID != userId)
             {
                 return Forbid();
             }
@@ -96,7 +96,7 @@ namespace PedalParadise.Controllers
 
             if (ModelState.IsValid)
             {
-                repair.ClientID = userId.Value;
+                repair.UserID = userId.Value;
                 repair.Status = "Pending";
                 repair.SubmittedDate = DateTime.Now;
 

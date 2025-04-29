@@ -16,7 +16,7 @@ namespace PedalParadise.Services
             _context = context;
         }
 
-        public async Task<IEnumerable<Order>> GetAllOrdersAsync()
+        /*public async Task<IEnumerable<Order>> GetAllOrdersAsync()
         {
             return await _context.Orders
                 .Include(o => o.Client)
@@ -35,6 +35,25 @@ namespace PedalParadise.Services
                 .ThenInclude(oi => oi.Product)
                 .Include(o => o.PaymentMethod)
                 .FirstOrDefaultAsync(o => o.OrderID == id);
+        }*/
+
+        public async Task<IEnumerable<Order>> GetAllOrdersAsync()
+        {
+            return await _context.Orders
+                .Include(o => o.Client) // Client is still valid, but no need for `.ThenInclude(c => c.User)`
+                .Include(o => o.OrderItems)
+                .ThenInclude(oi => oi.Product)
+                .ToListAsync();
+        }
+
+        public async Task<Order?> GetOrderByIdAsync(int id)
+        {
+            return await _context.Orders
+                .Include(o => o.Client) // No need to reference User explicitly
+                .Include(o => o.OrderItems)
+                .ThenInclude(oi => oi.Product)
+                .Include(o => o.PaymentMethod)
+                .FirstOrDefaultAsync(o => o.OrderID == id);
         }
 
         public async Task<IEnumerable<Order>> GetOrdersByClientIdAsync(int clientId)
@@ -42,7 +61,7 @@ namespace PedalParadise.Services
             return await _context.Orders
                 .Include(o => o.OrderItems)
                 .ThenInclude(oi => oi.Product)
-                .Where(o => o.ClientID == clientId)
+                .Where(o => o.UserID == clientId)
                 .OrderByDescending(o => o.Date)
                 .ToListAsync();
         }

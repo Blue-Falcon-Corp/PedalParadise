@@ -9,7 +9,7 @@ namespace PedalParadise.Models
         public int RepairID { get; set; }
 
         [Required]
-        public int ClientID { get; set; }
+        public int UserID { get; set; }
 
         [Required]
         [StringLength(200)]

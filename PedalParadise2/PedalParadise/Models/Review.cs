@@ -10,7 +10,7 @@ namespace PedalParadise.Models
         [Required]
         public int ProductID { get; set; }
         [Required]
-        public int ClientID { get; set; }
+        public int UserID { get; set; }
         [Required]
         [Range(1, 5)]
         public int Rating { get; set; }

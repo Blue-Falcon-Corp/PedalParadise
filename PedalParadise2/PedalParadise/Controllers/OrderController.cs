@@ -15,15 +15,17 @@ namespace PedalParadise.Controllers
     {
         private readonly IOrderService _orderService;
         private readonly IProductService _productService;
+        private readonly IUserService _userService;
 
-        public OrdersController(IOrderService orderService, IProductService productService)
+        public OrdersController(IOrderService orderService, IProductService productService, IUserService userService)
         {
             _orderService = orderService;
             _productService = productService;
+            _userService = userService;
         }
 
         // GET: /Orders/History
-        [Route("/Orders/History")]
+        [Route("/Order/History")]
         public async Task<IActionResult> History()
         {
             var userId = HttpContext.Session.GetInt32("UserId");
@@ -32,11 +34,17 @@ namespace PedalParadise.Controllers
                 return RedirectToAction("Login", "Account");
             }
 
-            // In real app, you'd look up client ID from user ID
-            var clientId = userId.Value;
-            var orders = await _orderService.GetOrdersByClientIdAsync(clientId);
+            // getting args for viewModel
+            var user = await _userService.GetUserByIdAsync(userId.Value);
+            var orders = await _orderService.GetOrdersByClientIdAsync(userId.Value);
 
-            return View(orders);
+            var viewModel = new ProfileViewModel
+            {
+                User = user,
+                Orders = (List<Order>)orders
+            };
+
+            return View(viewModel);
         }
 
         // GET: /Orders/Details/5
@@ -57,7 +65,7 @@ namespace PedalParadise.Controllers
 
             // Ensure user can only see their own orders unless they're an employee
             var userType = HttpContext.Session.GetString("UserType");
-            if (userType != "Employee" && order.ClientID != userId)
+            if (userType != "Employee" && order.UserID != userId)
             {
                 return Forbid();
             }
@@ -105,7 +113,7 @@ namespace PedalParadise.Controllers
                 // Create order
                 var order = new Order
                 {
-                    ClientID = userId.Value, // Assuming ClientID equals UserID for simplicity
+                    UserID = userId.Value, // Assuming UserID equals UserID for simplicity
                     Date = DateTime.Now,
                     TotalAmount = total,
                     Status = "Processing",

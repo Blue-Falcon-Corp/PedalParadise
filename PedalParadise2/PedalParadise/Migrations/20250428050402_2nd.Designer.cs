@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PedalParadise.Data;
 
@@ -11,9 +12,10 @@ using PedalParadise.Data;
 namespace PedalParadise.Migrations
 {
     [DbContext(typeof(PedalParadiseContext))]
-    partial class PedalParadiseContextModelSnapshot : ModelSnapshot
+    [Migration("20250428050402_2nd")]
+    partial class _2nd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,6 +47,21 @@ namespace PedalParadise.Migrations
                     b.ToTable("CartItems");
                 });
 
+            modelBuilder.Entity("PedalParadise.Models.Client", b =>
+                {
+                    b.Property<int>("ClientID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Membership")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("ClientID");
+
+                    b.ToTable("Clients");
+                });
+
             modelBuilder.Entity("PedalParadise.Models.Order", b =>
                 {
                     b.Property<int>("OrderID")
@@ -52,6 +69,9 @@ namespace PedalParadise.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderID"), 1L, 1);
+
+                    b.Property<int>("ClientID")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
@@ -70,14 +90,11 @@ namespace PedalParadise.Migrations
                     b.Property<decimal>("TotalAmount")
                         .HasColumnType("decimal(10,2)");
 
-                    b.Property<int>("UserID")
-                        .HasColumnType("int");
-
                     b.HasKey("OrderID");
 
-                    b.HasIndex("PaymentMethodPaymentID");
+                    b.HasIndex("ClientID");
 
-                    b.HasIndex("UserID");
+                    b.HasIndex("PaymentMethodPaymentID");
 
                     b.ToTable("Order_Table");
                 });
@@ -212,6 +229,9 @@ namespace PedalParadise.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
+                    b.Property<int>("ClientID")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("CompletedDate")
                         .HasColumnType("datetime2");
 
@@ -227,14 +247,11 @@ namespace PedalParadise.Migrations
                     b.Property<DateTime>("SubmittedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("UserID")
-                        .HasColumnType("int");
-
                     b.HasKey("RepairID");
 
                     b.HasIndex("AssignedEmployeeID");
 
-                    b.HasIndex("UserID");
+                    b.HasIndex("ClientID");
 
                     b.ToTable("RepairRequests");
                 });
@@ -246,6 +263,9 @@ namespace PedalParadise.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ReviewID"), 1L, 1);
+
+                    b.Property<int>("ClientID")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
@@ -260,14 +280,11 @@ namespace PedalParadise.Migrations
                     b.Property<int>("Rating")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserID")
-                        .HasColumnType("int");
-
                     b.HasKey("ReviewID");
 
-                    b.HasIndex("ProductID");
+                    b.HasIndex("ClientID");
 
-                    b.HasIndex("UserID");
+                    b.HasIndex("ProductID");
 
                     b.ToTable("Reviews");
                 });
@@ -280,15 +297,15 @@ namespace PedalParadise.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CartID"), 1L, 1);
 
+                    b.Property<int>("ClientID")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("UserID")
-                        .HasColumnType("int");
-
                     b.HasKey("CartID");
 
-                    b.HasIndex("UserID");
+                    b.HasIndex("ClientID");
 
                     b.ToTable("ShoppingCarts");
                 });
@@ -305,13 +322,9 @@ namespace PedalParadise.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.Property<int?>("ClientUserID")
-                        .HasColumnType("int");
-
                     b.Property<string>("Discriminator")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -337,25 +350,16 @@ namespace PedalParadise.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.HasKey("UserID");
-
-                    b.HasIndex("ClientUserID");
-
-                    b.ToTable("Users");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("User");
-                });
-
-            modelBuilder.Entity("PedalParadise.Models.Client", b =>
-                {
-                    b.HasBaseType("PedalParadise.Models.User");
-
-                    b.Property<string>("Membership")
+                    b.Property<string>("UserType")
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.HasDiscriminator().HasValue("Client");
+                    b.HasKey("UserID");
+
+                    b.ToTable("Users");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("User");
                 });
 
             modelBuilder.Entity("PedalParadise.Models.Employee", b =>
@@ -406,17 +410,28 @@ namespace PedalParadise.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("PedalParadise.Models.Client", b =>
+                {
+                    b.HasOne("PedalParadise.Models.User", "User")
+                        .WithOne("Client")
+                        .HasForeignKey("PedalParadise.Models.Client", "ClientID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("PedalParadise.Models.Order", b =>
                 {
+                    b.HasOne("PedalParadise.Models.Client", "Client")
+                        .WithMany("Orders")
+                        .HasForeignKey("ClientID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("PedalParadise.Models.PaymentMethod", "PaymentMethod")
                         .WithMany("Orders")
                         .HasForeignKey("PaymentMethodPaymentID");
-
-                    b.HasOne("PedalParadise.Models.Client", "Client")
-                        .WithMany("Orders")
-                        .HasForeignKey("UserID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
 
                     b.Navigation("Client");
 
@@ -465,7 +480,7 @@ namespace PedalParadise.Migrations
 
                     b.HasOne("PedalParadise.Models.Client", "Client")
                         .WithMany("RepairRequests")
-                        .HasForeignKey("UserID")
+                        .HasForeignKey("ClientID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -476,15 +491,15 @@ namespace PedalParadise.Migrations
 
             modelBuilder.Entity("PedalParadise.Models.Review", b =>
                 {
-                    b.HasOne("PedalParadise.Models.Product", "Product")
+                    b.HasOne("PedalParadise.Models.Client", "Client")
                         .WithMany("Reviews")
-                        .HasForeignKey("ProductID")
+                        .HasForeignKey("ClientID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("PedalParadise.Models.Client", "Client")
+                    b.HasOne("PedalParadise.Models.Product", "Product")
                         .WithMany("Reviews")
-                        .HasForeignKey("UserID")
+                        .HasForeignKey("ProductID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -497,18 +512,9 @@ namespace PedalParadise.Migrations
                 {
                     b.HasOne("PedalParadise.Models.Client", "Client")
                         .WithMany("ShoppingCarts")
-                        .HasForeignKey("UserID")
+                        .HasForeignKey("ClientID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Client");
-                });
-
-            modelBuilder.Entity("PedalParadise.Models.User", b =>
-                {
-                    b.HasOne("PedalParadise.Models.Client", "Client")
-                        .WithMany()
-                        .HasForeignKey("ClientUserID");
 
                     b.Navigation("Client");
                 });
@@ -529,6 +535,17 @@ namespace PedalParadise.Migrations
                     b.Navigation("ManagerNavigation");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("PedalParadise.Models.Client", b =>
+                {
+                    b.Navigation("Orders");
+
+                    b.Navigation("RepairRequests");
+
+                    b.Navigation("Reviews");
+
+                    b.Navigation("ShoppingCarts");
                 });
 
             modelBuilder.Entity("PedalParadise.Models.Order", b =>
@@ -559,18 +576,9 @@ namespace PedalParadise.Migrations
 
             modelBuilder.Entity("PedalParadise.Models.User", b =>
                 {
+                    b.Navigation("Client");
+
                     b.Navigation("Employee");
-                });
-
-            modelBuilder.Entity("PedalParadise.Models.Client", b =>
-                {
-                    b.Navigation("Orders");
-
-                    b.Navigation("RepairRequests");
-
-                    b.Navigation("Reviews");
-
-                    b.Navigation("ShoppingCarts");
                 });
 
             modelBuilder.Entity("PedalParadise.Models.Employee", b =>

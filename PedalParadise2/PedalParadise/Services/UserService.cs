@@ -51,23 +51,18 @@ namespace PedalParadise.Services
 
         public async Task<bool> UpdateUserAsync(User user)
         {
-            _context.Entry(user).State = EntityState.Modified;
+            if (user == null) return false;
 
             try
             {
+                _context.Users.Update(user);
                 await _context.SaveChangesAsync();
                 return true;
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception ex)
             {
-                if (!UserExists(user.UserID))
-                {
-                    return false;
-                }
-                else
-                {
-                    throw;
-                }
+                Console.WriteLine(ex);
+                return false;
             }
         }
 
@@ -88,7 +83,7 @@ namespace PedalParadise.Services
         {
             var employees = await _context.Employees
                 .Include(e => e.User)
-                .Where(e => e.User != null && e.User.UserType == role)
+                .Where(e => e.User != null && e.User.Discriminator == role)
                 .ToListAsync();
             return employees;
         }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PedalParadise.Data;
 using PedalParadise.Models;
+using PedalParadise.Services;
 
 
 namespace PedalParadise.Controllers
@@ -8,14 +9,28 @@ namespace PedalParadise.Controllers
     public class EmployeeController : Controller
     {
         private readonly PedalParadiseContext _context;
-        public EmployeeController(PedalParadiseContext context)
+        private readonly IUserService _userService;
+        public EmployeeController(IUserService userService, PedalParadiseContext context)
         {
+            _userService = userService;
             _context = context;
         }
-        public IActionResult Index()
+        [Route("/Employee/Dashboard")]
+        public async Task<IActionResult> Index()
         {
-            IEnumerable<Employee> employees = _context.Employees;
-            return View(employees);
+            var userId = HttpContext.Session.GetInt32("UserId");
+            if (userId == null)
+            {
+                return RedirectToAction("Login");
+            }
+
+            var user = await _userService.GetUserByIdAsync(userId.Value);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return View(user);
         }
 
         public IActionResult Create()

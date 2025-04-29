@@ -37,6 +37,13 @@ namespace PedalParadise.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            
+            //configure Discriminators for TPH Mappping
+            modelBuilder.Entity<User>()
+                .HasDiscriminator<string>("Discriminator")
+                .HasValue<User>("User")
+                .HasValue<Employee>("Employee")
+                .HasValue<Client>("Client");
 
             // Configure CartItem composite key
             modelBuilder.Entity<CartItem>()
@@ -67,6 +74,43 @@ namespace PedalParadise.Data
                 .HasOne(oi => oi.Product)
                 .WithMany()
                 .HasForeignKey(oi => oi.ProductID);
+
+            modelBuilder.Entity<Employee>()
+                .HasOne(e => e.ManagerNavigation)
+                .WithMany(e => e.ManagedEmployees)
+                .HasForeignKey(e => e.Manager)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Configure Client entity
+            modelBuilder.Entity<Client>()
+                .Property(c => c.Membership)
+                .HasMaxLength(20)
+                .IsRequired(); // Ensure Membership is constrained properly
+                       
+            // Define relationships for collections
+            modelBuilder.Entity<Client>()
+                .HasMany(c => c.ShoppingCarts)
+                .WithOne(s => s.Client)
+                .HasForeignKey(s => s.UserID) //Use UserID instead of ClientID
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Client>()
+                .HasMany(c => c.Orders)
+                .WithOne(o => o.Client)
+                .HasForeignKey(o => o.UserID)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Client>()
+                .HasMany(c => c.Reviews)
+                .WithOne(r => r.Client)
+                .HasForeignKey(r => r.UserID)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Client>()
+                .HasMany(c => c.RepairRequests)
+                .WithOne(rr => rr.Client)
+                .HasForeignKey(rr => rr.UserID)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

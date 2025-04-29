@@ -25,7 +25,7 @@ public class CheckoutController : Controller
         var cart = await _context.ShoppingCarts
             .Include(c => c.CartItems)
             .ThenInclude(ci => ci.Product)
-            .FirstOrDefaultAsync(c => c.ClientID == clientId.Value);
+            .FirstOrDefaultAsync(c => c.UserID == clientId.Value);
 
         if (cart == null)
         {
@@ -53,7 +53,7 @@ public class CheckoutController : Controller
         cart = await _context.ShoppingCarts
             .Include(c => c.CartItems)
             .ThenInclude(ci => ci.Product)
-            .FirstOrDefaultAsync(c => c.ClientID == clientId.Value);
+            .FirstOrDefaultAsync(c => c.UserID == clientId.Value);
 
         if (cart == null || !cart.CartItems.Any())
         {
@@ -96,7 +96,7 @@ public class CheckoutController : Controller
         var cart = await _context.ShoppingCarts
             .Include(c => c.CartItems)
             .ThenInclude(ci => ci.Product)
-            .FirstOrDefaultAsync(c => c.ClientID == clientId.Value);
+            .FirstOrDefaultAsync(c => c.UserID == clientId.Value);
 
         if (cart == null || !cart.CartItems.Any())
         {
@@ -108,7 +108,7 @@ public class CheckoutController : Controller
         var newOrder = new Order
         {
             Date = DateTime.Now,
-            ClientID = clientId.Value,
+            UserID = clientId.Value,
             TotalAmount = totalAmount,
             Status = "Processing",
             PaymentID = null

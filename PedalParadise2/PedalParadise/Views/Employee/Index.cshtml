@@ -1,12 +1,111 @@
-﻿@model IEnumerable<Employee>
+﻿@model PedalParadise.Models.Employee;
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Employee Account";
 }
 
 @if (TempData["ResultOk"] != null)
 {
     <h1 class="alert-success">@TempData["ResultOk"]</h1>
 }
+<div class="container d-flex justify-content-center">
+    <div class="row w-90 mt-4">
+        <div class="card shadow-lg col-md-4">
+            <div class="card-body">
+                <h5 class="fw-bold text-dark">Admin Dashboard</h5>
+                <hr />
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a asp-action="Index" asp-controller="Employee" class="nav-link text-dark">Account Information</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-action="History" asp-controller="Orders" class="nav-link text-dark">Order History</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-action="Orders" asp-controller="Admin" class="nav-link text-dark">
+                            <i class="bi bi-box-seam"></i> Orders
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-action="Accounts" asp-controller="Admin" class="nav-link text-dark">
+                            <i class="bi bi-people"></i> Accounts
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-action="Requests" asp-controller="Admin" class="nav-link text-dark">
+                            <i class="bi bi-list-check"></i> Requests
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-action="Products" asp-controller="Admin" class="nav-link text-dark">
+                            <i class="bi bi-bicycle"></i> Products
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
 
+        <!-- Profile Information -->
+        
+        <div class="col-md-8">
+            <div class="card shadow-lg p-4">
+                <h1 class="h3 fw-bold text-dark mb-4">Profile Information</h1>
+
+                <form asp-action="Edit" asp-controller="Account" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                    <!-- Non-Editable Employee Details -->
+                    <div class="mb-3">
+                        <label class="form-label">Employee ID: @Model.EmployeeID</label>
+                        
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Manager ID: @Model.Manager</label>
+                        
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Manager Name: --</label>
+                        <!--input asp-for="" class="form-control" readonly /-->
+                    </div>
+
+                    <!-- Editable User Details -->
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6">
+                            <label asp-for="FirstName" class="form-label">First Name</label>
+                            <input asp-for="FirstName" class="form-control" />
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="LastName" class="form-label">Last Name</label>
+                            <input asp-for="LastName" class="form-control" />
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label">Email</label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Phone" class="form-label">Phone Number</label>
+                        <input asp-for="Phone" class="form-control" />
+                        <span asp-validation-for="Phone" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Address" class="form-label">Address</label>
+                        <textarea asp-for="Address" class="form-control" rows="3"></textarea>
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-success w-100">Update Profile</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 

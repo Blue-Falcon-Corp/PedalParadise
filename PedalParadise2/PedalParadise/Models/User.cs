@@ -27,7 +27,7 @@ namespace PedalParadise.Models
 
         [Required]
         [StringLength(20)]
-        public string UserType { get; set; } = string.Empty; // Employee, Client
+        public string Discriminator { get; set; } = string.Empty; // Employee, Client
 
         [Required]
         [StringLength(100)]

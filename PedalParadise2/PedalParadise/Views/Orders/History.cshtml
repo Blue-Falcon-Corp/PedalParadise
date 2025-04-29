@@ -1,23 +1,10 @@
-﻿@model List<PedalParadise.Models.Order>
+﻿@model PedalParadise.Models.ViewModels.ProfileViewModel
 
 <div class="container-fluid d-flex justify-content-start">
     <div class="row w-75">
         <!-- Side Navigation -->
         <div class="col-md-4">
-            <div class="card shadow-lg">
-                <div class="card-body">
-                    <h5 class="fw-bold text-dark">Account Settings</h5>
-                    <hr />
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a asp-action="Profile" asp-controller="Account" class="nav-link text-dark">Account Information</a>
-                        </li>
-                        <li class="nav-item">
-                            <a asp-action="History" asp-controller="Orders" class="nav-link text-dark active">Order History</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+             @await Html.PartialAsync("_dashboardPartial", Model.User)
         </div>
 
         <!-- Orders List -->
@@ -25,7 +12,7 @@
             <div class="card shadow-lg p-4 table-responsive ">
                 <h1 class="h3 fw-bold text-dark mb-4">Order History</h1>
 
-                @if (Model != null && Model.Any())
+                @if (Model.Orders?.Count() > 0)
                 {
                     <table class="table table-hover ">
                         <thead class="table-light">
@@ -38,7 +25,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var order in Model)
+                            @foreach (var order in Model.Orders)
                             {
                                 <tr>
                                     <td>@order.OrderID</td>
@@ -48,7 +35,7 @@
                                     <td>
                                         <button type="button" class="btn btn-sm btn-outline-primary me-1" data-bs-toggle="modal" data-bs-target="#orderModal"
                                             data-orderid="@order.OrderID" data-date="@order.Date.ToString("yyyy-MM-dd")"
-                                            data-clientid="@order.ClientID" data-total="@order.TotalAmount.ToString("F2")"
+                                            data-clientid="@order.UserID" data-total="@order.TotalAmount.ToString("F2")"
                                             data-paymentid="@order.PaymentID" data-status="@order.Status">
                                             View
                                         </button>

@@ -29,7 +29,7 @@ namespace PedalParadise.Services
                 .ToListAsync();
         }
 
-        public async Task<Product> GetProductByIdAsync(int id)
+        /*public async Task<Product> GetProductByIdAsync(int id)
         {
 #pragma warning disable CS8603 // Possible null reference return.
             return await _context.Products
@@ -38,6 +38,14 @@ namespace PedalParadise.Services
                 .ThenInclude(c => c.User)
                 .FirstOrDefaultAsync(p => p.ProductID == id);
 #pragma warning restore CS8603 // Possible null reference return.
+        }*/
+
+        public async Task<Product?> GetProductByIdAsync(int id)
+        {
+            return await _context.Products
+                .Include(p => p.Reviews)
+                .ThenInclude(r => r.Client) // No need for `.ThenInclude(c => c.User)`
+                .FirstOrDefaultAsync(p => p.ProductID == id);
         }
 
         public async Task<Product> AddProductAsync(Product product)

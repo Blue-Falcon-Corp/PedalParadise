@@ -9,7 +9,7 @@ namespace PedalParadise.Models
         [Key]
         public int CartID { get; set; }
         [Required]
-        public int ClientID { get; set; }
+        public int UserID { get; set; }
         [Required]
         public DateTime DateCreated { get; set; } = DateTime.Now;
         // Navigation properties

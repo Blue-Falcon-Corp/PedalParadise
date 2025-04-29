@@ -10,7 +10,7 @@ namespace PedalParadise.Models
         [Required]
         public DateTime Date { get; set; } = DateTime.Now;
         [Required]
-        public int ClientID { get; set; }
+        public int UserID { get; set; }
         [Required]
         [Column(TypeName = "decimal(10, 2)")]
         public decimal TotalAmount { get; set; }

@@ -15,7 +15,7 @@ namespace PedalParadise.Services
         {
             _context = context;
         }
-        public async Task<IEnumerable<RepairRequest>> GetAllRepairsAsync()
+        /*public async Task<IEnumerable<RepairRequest>> GetAllRepairsAsync()
         {
             return await _context.RepairRequests
                 .Include(r => r.Client)
@@ -33,21 +33,46 @@ namespace PedalParadise.Services
                     .ThenInclude(e => e!.User) // Add null-forgiving operator
                 .FirstOrDefaultAsync(r => r.RepairID == id);
         }
-        public async Task<IEnumerable<RepairRequest>> GetRepairsByClientIdAsync(int clientId)
-        {
-            return await _context.RepairRequests
-                .Include(r => r.AssignedEmployee)
-                    .ThenInclude(e => e!.User) // Add null-forgiving operator
-                .Where(r => r.ClientID == clientId)
-                .OrderByDescending(r => r.SubmittedDate)
-                .ToListAsync();
-        }
         public async Task<IEnumerable<RepairRequest>> GetRepairsByEmployeeIdAsync(int employeeId)
         {
             return await _context.RepairRequests
                 .Include(r => r.Client)
                     .ThenInclude(c => c!.User) // Add null-forgiving operator
                 .Where(r => r.AssignedEmployeeID == employeeId)
+                .OrderByDescending(r => r.SubmittedDate)
+                .ToListAsync();
+        }*/
+        public async Task<IEnumerable<RepairRequest>> GetAllRepairsAsync()
+        {
+            return await _context.RepairRequests
+                .Include(r => r.Client) // No need for .ThenInclude(c => c!.User)
+                .Include(r => r.AssignedEmployee) // No need for .ThenInclude(e => e!.User)
+                .ToListAsync();
+        }
+
+        public async Task<RepairRequest?> GetRepairByIdAsync(int id)
+        {
+            return await _context.RepairRequests
+                .Include(r => r.Client) // No need for .ThenInclude(c => c!.User)
+                .Include(r => r.AssignedEmployee) // No need for .ThenInclude(e => e!.User)
+                .FirstOrDefaultAsync(r => r.RepairID == id);
+        }
+
+        public async Task<IEnumerable<RepairRequest>> GetRepairsByEmployeeIdAsync(int employeeId)
+        {
+            return await _context.RepairRequests
+                .Include(r => r.Client) // No need for .ThenInclude(c => c!.User)
+                .Where(r => r.AssignedEmployeeID == employeeId)
+                .OrderByDescending(r => r.SubmittedDate)
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<RepairRequest>> GetRepairsByClientIdAsync(int clientId)
+        {
+            return await _context.RepairRequests
+                .Include(r => r.AssignedEmployee)
+                    .ThenInclude(e => e!.User) // Add null-forgiving operator
+                .Where(r => r.UserID == clientId)
                 .OrderByDescending(r => r.SubmittedDate)
                 .ToListAsync();
         }
