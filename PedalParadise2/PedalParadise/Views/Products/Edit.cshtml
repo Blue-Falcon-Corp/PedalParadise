@@ -1,0 +1,22 @@
+﻿@model Product
+
+<h2>Edit Product</h2>
+
+<form asp-action="Edit" asp-controller="Products" method="post">
+    <input type="hidden" asp-for="ProductID" />
+
+    <label asp-for="Name">Name:</label>
+    <input asp-for="Name" class="form-control" />
+
+    <label asp-for="Category">Category:</label>
+    <input asp-for="Category" class="form-control" />
+
+    <label asp-for="Price">Price:</label>
+    <input asp-for="Price" class="form-control" />
+
+    <label asp-for="Stock">Stock:</label>
+    <input asp-for="Stock" class="form-control" />
+
+    <button type="submit" class="btn btn-success">Save Changes</button>
+    <a asp-action="List" asp-controller="Products" class="btn btn-secondary">Cancel</a>
+</form>

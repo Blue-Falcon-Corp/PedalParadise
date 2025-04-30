@@ -1,0 +1,39 @@
+﻿@model RepairRequest
+
+<div class="container">
+    <h2 class="fw-bold text-center mb-4">Submit Repair Request</h2>
+
+    <form asp-action="Create" asp-controller="Repairs" method="post">
+        <div class="row">
+            <!-- Left Column -->
+           
+                <div class="mb-3">
+                    <label asp-for="BikeDetails" class="form-label fw-bold">Bike Details</label>
+                    <input asp-for="BikeDetails" class="form-control" placeholder="Enter bike model and specifications" />
+                    <span asp-validation-for="BikeDetails" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="IssueDescription" class="form-label fw-bold">Issue Description</label>
+                    <textarea asp-for="IssueDescription" class="form-control" rows="3" placeholder="Describe the problem"></textarea>
+                    <span asp-validation-for="IssueDescription" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="AssignedEmployeeID" class="form-label fw-bold">Request a Specific Technician</label>
+                    <select asp-for="AssignedEmployeeID" class="form-select">
+                        @foreach (var employee in ViewBag.Employees)
+                        {
+                            <option value="@employee.">@employee.FirstName @employee.LastName</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+        <!-- Submit Button -->
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-success">Submit Request</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>

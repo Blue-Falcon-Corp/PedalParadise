@@ -72,18 +72,22 @@ namespace PedalParadise.Controllers
         }
 
         // GET: /Repairs/Create
-        public IActionResult Create()
+        [Route("Repairs/Create")]
+        public async Task<IActionResult> CreateAsync()
         {
             var userId = HttpContext.Session.GetInt32("UserId");
             if (userId == null)
             {
                 return RedirectToAction("Login", "Account");
             }
+            var users = await _userService.GetAllUsersAsync();
+            ViewBag.Employees = users.OfType<Employee>().ToList();
 
             return View();
         }
 
         // POST: /Repairs/Create
+        [Route("/Repairs/Create")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(RepairRequest repair)
@@ -93,7 +97,21 @@ namespace PedalParadise.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
+            // Get all model properties with values(filter out null ones)
+            var providedProperties = typeof(RepairRequest).GetProperties()
+                .Where(p => p.GetValue(repair) != null)
+                .Select(p => p.Name)
+                .ToList();
 
+            // Remove validation for properties not in the request
+            foreach (var property in ModelState.Keys.ToList())
+            {
+                if (!providedProperties.Contains(property))
+                {
+                    ModelState.Remove(property);
+                }
+            }
+            
             if (ModelState.IsValid)
             {
                 repair.UserID = userId.Value;
@@ -105,8 +123,12 @@ namespace PedalParadise.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
-
-            return View(repair);
+            else
+            {
+                var users = await _userService.GetAllUsersAsync();
+                ViewBag.Employees = users.OfType<Employee>().ToList();
+                return View(repair);
+            }
         }
 
         // GET: /Repairs/UpdateStatus/5 (Employee only)

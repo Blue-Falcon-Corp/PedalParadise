@@ -108,14 +108,9 @@ namespace PedalParadise.Controllers
         }
 
         // GET: /Products/Edit/5 (Admin only)
-        [Route("Products/Edit/id")]
+        [Route("Products/Edit")]
         public async Task<IActionResult> Edit(int id)
         {
-            if (HttpContext.Session.GetString("UserType") != "Employee")
-            {
-                return RedirectToAction("Index", "Home");
-            }
-
             var product = await _productService.GetProductByIdAsync(id);
             if (product == null)
             {
@@ -130,15 +125,25 @@ namespace PedalParadise.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Product product)
-        {
-            if (HttpContext.Session.GetString("UserType") != "Employee")
-            {
-                return RedirectToAction("Index", "Home");
-            }
+        { 
 
             if (id != product.ProductID)
             {
                 return NotFound();
+            }
+            // Get all model properties with values(filter out null ones)
+            var providedProperties = typeof(Product).GetProperties()
+                .Where(p => p.GetValue(product) != null)
+                .Select(p => p.Name)
+                .ToList();
+
+            // Remove validation for properties not in the request
+            foreach (var property in ModelState.Keys.ToList())
+            {
+                if (!providedProperties.Contains(property))
+                {
+                    ModelState.Remove(property);
+                }
             }
 
             if (ModelState.IsValid)
@@ -151,14 +156,9 @@ namespace PedalParadise.Controllers
         }
 
         // GET: /Products/Delete/5 (Admin only)
-        [Route("Products/Delete/id")]
+        [Route("Products/Delete")]
         public async Task<IActionResult> Delete(int id)
         {
-            if (HttpContext.Session.GetString("UserType") != "Employee")
-            {
-                return RedirectToAction("Index", "Home");
-            }
-
             var product = await _productService.GetProductByIdAsync(id);
             if (product == null)
             {
@@ -174,11 +174,6 @@ namespace PedalParadise.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (HttpContext.Session.GetString("UserType") != "Employee")
-            {
-                return RedirectToAction("Index", "Home");
-            }
-
             await _productService.DeleteProductAsync(id);
             return RedirectToAction(nameof(Index));
         }
